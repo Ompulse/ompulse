@@ -58,6 +58,46 @@
     p, li {
       line-height: 1.6;
     }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+    }
+    .cookie-banner.hidden {
+      display: none;
+    }
+    .cookie-banner input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    .cookie-banner button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    .cookie-banner a {
+      color: gold;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -77,45 +117,81 @@
     <h2>Condiciones Generales</h2>
     <ul>
       <li>Puedes cancelar tu suscripción en cualquier momento desde tu panel de usuario.</li>
-      <li>La cancelación evitará futuros cobros, pero no implica la devolución de pagos ya realizados.</li>
-      <li>Una vez cancelada, conservarás el acceso al contenido hasta que finalice el período ya pagado.</li>
-      <li>Es responsabilidad del usuario gestionar su suscripción antes de cada renovación automática.</li>
-      <li>Debido a que se trata de un producto digital con acceso inmediato, no ofrecemos reembolsos una vez completada la compra y activado el acceso.</li>
-      <li>No se realizarán reembolsos parciales por meses no utilizados.</li>
-      <li>El contenido es para uso personal. No está permitido redistribuirlo ni revenderlo.</li>
-      <li>La suscripción se renovará automáticamente.</li>
-      <li>Puedes cancelar en cualquier momento antes del siguiente cobro.</li>
+      <li>La cancelación evita futuros cobros, pero no implica reembolsos de pagos ya realizados.</li>
+      <li>Conservarás el acceso al contenido hasta el final del período pagado.</li>
+      <li>No hay reembolsos parciales ni devolución por contenido no consumido.</li>
+      <li>Está prohibida la redistribución del contenido sin permiso expreso.</li>
     </ul>
 
     <h2>Afiliación</h2>
     <ul>
-      <li>La participación en el sistema de afiliados implica actuar de forma ética y sin promesas engañosas.</li>
-      <li>Si tu suscripción se cancela, dejarás de participar en el programa de afiliados.</li>
-      <li>Si tienes un impago en tu suscripción, se mantendrán tus afiliados durante un período de 30 días para reactivación.</li>
-      <li>Nos reservamos el derecho de suspender cuentas que infrinjan estos términos.</li>
-      <li>El uso indebido del programa de referidos (como autocompras o spam) resultará en la cancelación de comisiones y posible cierre de cuenta.</li>
-      <li>Los beneficios obtenidos a través del programa de afiliados dependerán exclusivamente del esfuerzo, compromiso y capacidad de cada individuo. No se garantizan ingresos ni resultados específicos.</li>
-      <li>Es responsabilidad exclusiva de cada afiliado declarar y gestionar adecuadamente cualquier ingreso recibido, incluyendo el cumplimiento con sus obligaciones fiscales y tributarias conforme a las leyes de su país de residencia.</li>
+      <li>Está prohibido hacer promesas de ingresos garantizados.</li>
+      <li>El uso fraudulento del sistema resultará en expulsión y cancelación de comisiones.</li>
+      <li>Es tu responsabilidad cumplir con obligaciones fiscales sobre los ingresos obtenidos.</li>
     </ul>
 
-    <h2>Protección de Datos</h2>
+    <h2>Política de Privacidad</h2>
     <p>
-      En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD), te informamos de que los datos personales que nos proporciones serán tratados por <strong>Innovative Education Group LLC</strong> con la finalidad de gestionar tu cuenta, acceso a contenido digital y, en su caso, comisiones de afiliado.
+      En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), te informamos que los datos personales que proporcionas serán tratados por <strong>Innovative Education Group LLC</strong> como responsable del tratamiento.
+    </p>
+    <ul>
+      <li><strong>Finalidad:</strong> gestionar tu cuenta, acceso al contenido, afiliaciones y atención al cliente.</li>
+      <li><strong>Legitimación:</strong> consentimiento del interesado y ejecución del contrato.</li>
+      <li><strong>Destinatarios:</strong> no se cederán datos a terceros, salvo obligación legal.</li>
+      <li><strong>Conservación:</strong> se conservarán mientras exista relación contractual o legal.</li>
+      <li><strong>Derechos:</strong> acceso, rectificación, supresión, limitación, oposición y portabilidad.</li>
+    </ul>
+
+    <h2 id="cookies">Política de Cookies</h2>
+    <p>
+      Este sitio utiliza cookies propias y de terceros para garantizar el funcionamiento, mejorar la experiencia de navegación y con fines analíticos. Al continuar navegando o aceptar el uso de cookies, consientes su instalación.
     </p>
     <p>
-      Tienes derecho a acceder, rectificar y suprimir tus datos, así como otros derechos reconocidos por la ley. 
+      Puedes gestionar o deshabilitar las cookies en la configuración de tu navegador. Sin embargo, al desactivarlas, algunas funciones del sitio podrían no estar disponibles.
     </p>
-    <p>
-      Los datos se conservarán mientras exista una relación contractual o mientras no se solicite su supresión. Nunca se cederán a terceros sin consentimiento legal u obligación contractual.
-    </p>
+    <ul>
+      <li><strong>Cookies técnicas:</strong> necesarias para el funcionamiento del sitio.</li>
+      <li><strong>Cookies analíticas:</strong> permiten analizar el comportamiento de navegación de los usuarios.</li>
+      <li><strong>Cookies de terceros:</strong> como las de servicios de analítica, afiliación o redes sociales.</li>
+    </ul>
 
     <h2>Información de la Empresa</h2>
     <p><strong>Innovative Education Group LLC</strong></p>
     <p>412 W 7th St, Clovis, NM, 88101, EE. UU.</p>
+    <p>Email de contacto: contacto@ompulse.com</p>
 
     <h2>Jurisdicción</h2>
-    <p>Este sitio web opera bajo la jurisdicción del estado de Nuevo México, Estados Unidos. Cualquier disputa será resuelta conforme a las leyes vigentes en dicho estado.</p>
+    <p>
+      Este sitio web opera bajo la jurisdicción del estado de Nuevo México, EE. UU. Cualquier disputa será resuelta conforme a la legislación vigente en dicho estado.
+    </p>
   </main>
+
+  <footer>
+    © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.<br>
+    Al utilizar este sitio estás aceptando nuestra <a href="#cookies" style="color:gold;">política de cookies</a> y nuestros <a href="legal.html" style="color:gold;">términos legales</a>.
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="#cookies">política de cookies</a>.</label>
+    <button onclick="aceptarCookies()">Aceptar</button>
+  </div>
+
+  <script>
+    function aceptarCookies() {
+      const check = document.getElementById('cookieConsentCheck');
+      if (check.checked) {
+        document.getElementById('cookieBanner').classList.add('hidden');
+        localStorage.setItem('cookiesAceptadas', 'true');
+      } else {
+        alert('Debes aceptar la política de cookies para continuar.');
+      }
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem('cookiesAceptadas') === 'true') {
+        document.getElementById('cookieBanner').classList.add('hidden');
+      }
+    };
+  </script>
 </body>
 </html>
-
