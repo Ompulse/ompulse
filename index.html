@@ -119,6 +119,20 @@
       font-size: 0.9rem;
       color: #aaa;
     }
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>
@@ -147,18 +161,33 @@
   </section>
 
   <section>
-    <h2>¿Por qué elegirnos?</h2>
-    <div class="benefits">
-      <div class="benefit">📘 Aprende sobre negocios digitales reales</div>
-      <div class="benefit">💰 Gana dinero desde el primer día</div>
-      <div class="benefit">⚙️ Sistema fácil y sin complicaciones</div>
-      <div class="benefit">🌍 Comparte con personas desde cualquier lugar</div>
-      <div class="benefit">💼 Sin jefes ni horarios</div>
-      <div class="benefit">📈 Escala tus ingresos mes a mes</div>
-      <div class="benefit">🧠 Contenido creado por expertos</div>
-      <div class="benefit">🔥 Sistema que recompensa tu esfuerzo y tu red</div>
-      <div class="benefit">🚀 Si estás aquí, es porque quieres un cambio</div>
+    <h2>¿Cuánto podrías ganar?</h2>
+    <div class="calc-container">
+      <label for="directos">¿Cuántas personas vas a ayudar directamente?</label>
+      <input type="range" id="directos" name="directos" min="0" max="200" value="10" oninput="calcular()">
+      <span id="valDirectos">3</span>
+
+      <label for="referidos">Promedio de personas que recomendarán tus referidos</label>
+      <input type="range" id="referidos" name="referidos" min="0" max="50" value="5" oninput="calcular()">
+      <span id="valReferidos">2</span>
+
+      <div class="result">Ganancia estimada: <span id="resultado">170€</span></div>
     </div>
+  </section>
+
+  <section>
+    <h2>Suscríbete</h2>
+    <p class="price">148€ / mes (IVA incluido)</p>
+    <p>Una única suscripción, todo lo que necesitas:</p>
+    <ul>
+      <li>✅ Acceso a la revista digital mensual</li>
+      <li>✅ Herramientas para vender y generar ingresos</li>
+      <li>✅ Comisión directa de 50€ por cada referido</li>
+      <li>✅ Comisión indirecta de 10€ por cada referido de tus referidos</li>
+    </ul>
+    <p><strong>Cubres el coste con solo 3 personas al mes.</strong> Todo lo demás, es ganancia.</p>
+    <p>Convierte tu red de contactos en tu fuente de ingresos, sin invertir más que tu suscripción mensual.</p>
+    <a class="cta-button" href="https://pay.ompulse.com" target="_blank" rel="noopener noreferrer">Comprar ahora AQUÍ</a>
   </section>
 
   <section>
@@ -183,47 +212,11 @@
     </div>
   </section>
 
-  <section>
-    <h2>Suscripción Mensual</h2>
-    <p class="price">148€ / mes (IVA incluido)</p>
-    <p>Una única suscripción, todo lo que necesitas:</p>
-    <ul>
-      <li>✅ Acceso a la revista digital mensual</li>
-      <li>✅ Herramientas para vender y generar ingresos</li>
-      <li>✅ Comisión directa de 50€ por cada referido</li>
-      <li>✅ Comisión indirecta de 10€ por cada referido de tus referidos</li>
-    </ul>
-    <p><strong>Cubres el coste con solo 3 personas al mes.</strong> Todo lo demás, es ganancia.</p>
-    <p>Convierte tu red de contactos en tu fuente de ingresos, sin invertir más que tu suscripción mensual.</p>
-  <a class="cta-button" href="https://app.paykickstart.com/checkout/7DbEdNQKwroYezYElaNzV6Ry490aO38L" target="_blank" rel="noopener noreferrer">
-  Comprar ahora AQUÍ
-</a>
-
-  </section>
-
-  <section>
-    <h2>¿Cuánto podrías ganar?</h2>
-    <div class="calc-container">
-      <label for="directos">¿Cuántas personas vas a ayudar directamente?</label>
-      <input type="range" id="directos" name="directos" min="0" max="200" value="3" oninput="calcular()">
-      <span id="valDirectos">3</span>
-
-      <label for="referidos">Promedio de personas que recomendarán tus referidos</label>
-      <input type="range" id="referidos" name="referidos" min="0" max="50" value="2" oninput="calcular()">
-      <span id="valReferidos">2</span>
-
-      <div class="result">Ganancia estimada: <span id="resultado">170€</span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Área de afiliado</h2>
-    <a class="cta-button" href="#">Ya eres afiliado (enlace aquí)</a>
-  </section>
-
   <footer>
     © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.
   </footer>
+
+  <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
   <script>
     function calcular() {
