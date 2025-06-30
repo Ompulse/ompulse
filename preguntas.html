@@ -58,6 +58,60 @@
     p {
       line-height: 1.6;
     }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+    }
+    .cookie-banner.hidden {
+      display: none;
+    }
+    .cookie-banner input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    .cookie-banner button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    .cookie-banner a {
+      color: gold;
+      text-decoration: underline;
+    }
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>
@@ -93,7 +147,36 @@
     <h2>¿Necesito experiencia previa en ventas o marketing?</h2>
     <p>No. Recibes formación desde el primer momento con la revista, que incluye guías prácticas, estrategias y herramientas para que puedas empezar incluso sin experiencia previa.</p>
   </main>
+
+  <footer>
+    © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.<br>
+    Al utilizar este sitio estás aceptando nuestra <a href="legal.html#cookies" style="color:gold;">política de cookies</a> y nuestros <a href="legal.html" style="color:gold;">términos legales</a>.
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="legal.html#cookies" target="_blank">política de cookies</a>.</label>
+    <button onclick="aceptarCookies()">Aceptar</button>
+  </div>
+
+  <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+    function aceptarCookies() {
+      const check = document.getElementById('cookieConsentCheck');
+      if (check.checked) {
+        document.getElementById('cookieBanner').classList.add('hidden');
+        localStorage.setItem('cookiesAceptadas', 'true');
+      } else {
+        alert('Debes aceptar la política de cookies para continuar.');
+      }
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem('cookiesAceptadas') === 'true') {
+        document.getElementById('cookieBanner').classList.add('hidden');
+      }
+    };
+  </script>
 </body>
 </html>
-
 
