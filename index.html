@@ -149,6 +149,40 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+    }
+    .cookie-banner button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    .cookie-banner input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    .cookie-banner a {
+      color: gold;
+      text-decoration: underline;
+    }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -240,6 +274,13 @@
 
   <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
+  <div class="cookie-banner" id="cookieBanner">
+    <div>
+      <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="legal.html" target="_blank">política de cookies</a>.</label>
+    </div>
+    <button onclick="aceptarCookies()">Aceptar</button>
+  </div>
+
   <script>
     function calcular() {
       const directos = parseInt(document.getElementById('directos').value);
@@ -251,7 +292,22 @@
       document.getElementById('resultado').innerText = ganancia + '€';
     }
     calcular();
+
+    function aceptarCookies() {
+      const check = document.getElementById('cookieConsentCheck');
+      if (check.checked) {
+        document.getElementById('cookieBanner').classList.add('hidden');
+        localStorage.setItem('cookiesAceptadas', 'true');
+      } else {
+        alert("Debes aceptar la política de cookies para continuar.");
+      }
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('cookiesAceptadas') === 'true') {
+        document.getElementById('cookieBanner').classList.add('hidden');
+      }
+    };
   </script>
 </body>
 </html>
-
