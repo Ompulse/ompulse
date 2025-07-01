@@ -6,6 +6,20 @@
   <title>OMPULSE - Revista Nº1 de Negocios Digitales</title>
   <link rel="icon" type="image/png" href="h%20copia.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
+  <script>
+    (function(w){
+      w.fpr = w.fpr || function(){
+        w.fpr.q = w.fpr.q || [];
+        w.fpr.q[arguments[0] == 'set' ? 'unshift' : 'push'](arguments);
+      };
+    })(window);
+    fpr("init", {cid:"fzvofhq1"});
+    fpr("click");
+  </script>
+  <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -162,13 +176,11 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
-
     @keyframes pulsate {
       0% { transform: translateY(-50%) scale(1); }
       50% { transform: translateY(-50%) scale(1.05); }
       100% { transform: translateY(-50%) scale(1); }
     }
-
     .floating-cta {
       position: fixed;
       right: -20px;
@@ -185,12 +197,10 @@
       animation: pulsate 2s infinite ease-in-out;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .floating-cta:hover {
       transform: translateY(-50%) scale(1.15);
       box-shadow: 0 12px 28px rgba(255,0,0,0.6);
     }
-
     .cookie-banner {
       position: fixed;
       bottom: 0;
@@ -293,19 +303,19 @@
     <div class="testimonials">
       <div class="testimonial">
         <div class="testimonial-name">Luis M.</div>
-        <div class="testimonial-text">El que no gana dinero es porque no quiere, desde mi sofá, hablando con los colegas, le dedico cada día unas 4h a moverlo entre contactos, amigos, conocidos, el del super, el peluquero y les dedico un rato a enseñarles como crecer, y que con solo 3 personas todo lo demas es beneficio. En 3 semanas somos más de 40 personas en mi red.</div>
+        <div class="testimonial-text">El que no gana dinero es porque no quiere...</div>
       </div>
       <div class="testimonial">
         <div class="testimonial-name">Miguel</div>
-        <div class="testimonial-text">Desconfiaba un poco al principio. Lo compartí con mi grupo de amigos y esto es potente, ya he ganado más de 1500€, además el contenido de la revista me está ayudando. Le doy un 10</div>
+        <div class="testimonial-text">Desconfiaba un poco al principio...</div>
       </div>
       <div class="testimonial">
         <div class="testimonial-name">Leonardo</div>
-        <div class="testimonial-text">El contenido tiene muchísimo valor. No solo estoy ganando dinero, también estoy aprendiendo sobre automatización y marketing digital de verdad. ¡Vale cada euro!</div>
+        <div class="testimonial-text">El contenido tiene muchísimo valor...</div>
       </div>
       <div class="testimonial">
         <div class="testimonial-name">Nerea</div>
-        <div class="testimonial-text">Ya he generado mis primeros ingresos con solo 4 referidos, y lo mejor es que se nota que el contenido es profesional y útil. Lo recomiendo a quien quiera empezar algo serio sin complicarse.</div>
+        <div class="testimonial-text">Ya he generado mis primeros ingresos...</div>
       </div>
     </div>
   </section>
@@ -331,7 +341,6 @@
       const referidos = parseInt(document.getElementById('referidos').value);
       document.getElementById('valDirectos').innerText = directos;
       document.getElementById('valReferidos').innerText = referidos;
-
       const ganancia = (directos * 50) + (directos * referidos * 10);
       document.getElementById('resultado').innerText = ganancia + '€';
     }
@@ -355,4 +364,3 @@
   </script>
 </body>
 </html>
-
