@@ -70,6 +70,12 @@
       border-radius: 1rem;
       box-shadow: 0 6px 20px rgba(255,0,0,0.3);
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .benefit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(255,0,0,0.5);
+      cursor: pointer;
     }
     .testimonials {
       display: grid;
@@ -114,6 +120,12 @@
       border-radius: 1rem;
       box-shadow: 0 6px 20px rgba(255,0,0,0.3);
       margin-top: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .calc-container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(255,0,0,0.5);
+      cursor: pointer;
     }
     label {
       display: block;
@@ -150,7 +162,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
 
-    /* BOTÓN FLOTANTE NUEVO CON ANIMACIÓN CONTINUA */
     @keyframes pulsate {
       0% { transform: translateY(-50%) scale(1); }
       50% { transform: translateY(-50%) scale(1.05); }
@@ -159,7 +170,7 @@
 
     .floating-cta {
       position: fixed;
-      right: -20px; /* Se "corta" por el borde derecho */
+      right: -20px;
       top: 50%;
       transform: translateY(-50%);
       background-color: #ff0000;
@@ -302,7 +313,6 @@
     © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.
   </footer>
 
-  <!-- Botón flotante actualizado -->
   <a href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" class="floating-cta" target="_blank">🔥 Únete</a>
 
   <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
