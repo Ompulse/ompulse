@@ -98,6 +98,39 @@
       color: gold;
       text-decoration: underline;
     }
+    .floating-buy-button {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #ff0000;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      border-radius: 0.5rem 0 0 0.5rem;
+      box-shadow: -2px 2px 10px rgba(255, 0, 0, 0.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .floating-buy-button:hover {
+      background-color: #cc0000;
+    }
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      z-index: 998;
+    }
   </style>
 </head>
 <body>
@@ -166,6 +199,8 @@
     </p>
   </main>
 
+  <a class="floating-buy-button" href="https://buy.stripe.com/eVa4jX8Ojbfr9qg28b" target="_blank">Únete</a>
+
   <footer>
     © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.<br>
     Al utilizar este sitio estás aceptando nuestra <a href="#cookies" style="color:gold;">política de cookies</a> y nuestros <a href="legal.html" style="color:gold;">términos legales</a>.
@@ -175,6 +210,8 @@
     <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="#cookies">política de cookies</a>.</label>
     <button onclick="aceptarCookies()">Aceptar</button>
   </div>
+
+  <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
   <script>
     function aceptarCookies() {
@@ -195,3 +232,4 @@
   </script>
 </body>
 </html>
+
