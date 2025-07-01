@@ -58,6 +58,43 @@
     p {
       line-height: 1.6;
     }
+    .buy-button {
+      display: block;
+      width: fit-content;
+      margin: 3rem auto 0;
+      background-color: gold;
+      color: #000;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+      transition: background-color 0.3s;
+    }
+    .buy-button:hover {
+      background-color: #e6b800;
+    }
+    .floating-buy-button {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #ff0000;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      border-radius: 0.5rem 0 0 0.5rem;
+      box-shadow: -2px 2px 10px rgba(255, 0, 0, 0.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .floating-buy-button:hover {
+      background-color: #cc0000;
+    }
     footer {
       text-align: center;
       padding: 2rem;
@@ -146,7 +183,11 @@
 
     <h2>¿Necesito experiencia previa en ventas o marketing?</h2>
     <p>No. Recibes formación desde el primer momento con la revista, que incluye guías prácticas, estrategias y herramientas para que puedas empezar incluso sin experiencia previa.</p>
+
+    <a class="buy-button" href="https://buy.stripe.com/eVa4jX8Ojbfr9qg28b" target="_blank">Suscribirme ahora</a>
   </main>
+
+  <a class="floating-buy-button" href="https://buy.stripe.com/eVa4jX8Ojbfr9qg28b" target="_blank">Únete</a>
 
   <footer>
     © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.<br>
