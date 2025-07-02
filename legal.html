@@ -230,5 +230,21 @@
       }
     };
   </script>
+
+  <!-- Script para añadir ?fpr al enlace de Stripe si existe en localStorage -->
+  <script>
+    (function () {
+      const fpr = localStorage.getItem("fpr_param");
+      if (fpr) {
+        const links = document.querySelectorAll("a[href*='stripe.com']");
+        links.forEach(link => {
+          const url = new URL(link.href);
+          url.searchParams.set("fpr", fpr);
+          link.href = url.toString();
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
+
