@@ -8,8 +8,9 @@ const cookieParser = require('cookie-parser');
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '..'))); // Sirve archivos estáticos como index.html, legal.html, etc.
 
-// Rutas
+// Ruta de creación de sesión de Stripe Checkout
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
     const tid = req.cookies['_fprom_tid'] || null;
@@ -18,7 +19,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       line_items: [
         {
-          price: 'price_1Rg1fUKDqWdaksGKHNDsOQTo', // Precio creado desde tu Stripe
+          price: 'price_1Rg1fUKDqWdaksGKHNDsOQTo', // Sustituye por tu precio real
           quantity: 1,
         },
       ],
@@ -38,8 +39,8 @@ app.post('/api/create-checkout-session', async (req, res) => {
   }
 });
 
-// Servidor
-const PORT = process.env.PORT || 3000;
+// Arranque del servidor
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
