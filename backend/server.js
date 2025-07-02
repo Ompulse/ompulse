@@ -4,11 +4,23 @@ const app = express();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
+// CONFIGURAR CORS
+app.use(cors({
+  origin: 'https://ompulse.com',
+  credentials: true,
+}));
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '..'))); // Sirve archivos estáticos como index.html, legal.html, etc.
+app.use(express.static(path.join(__dirname, '..')));
+
+// Ruta de salud para Render (opcional pero recomendado)
+app.get('/healthz', (req, res) => {
+  res.send('OK');
+});
 
 // Ruta de creación de sesión de Stripe Checkout
 app.post('/api/create-checkout-session', async (req, res) => {
@@ -34,14 +46,15 @@ app.post('/api/create-checkout-session', async (req, res) => {
 
     res.json({ url: session.url });
   } catch (err) {
-    console.error('Error al crear la sesión de Stripe:', err);
-    res.status(500).json({ error: 'No se pudo crear la sesión de pago' });
+    console.error('❌ Error al crear la sesión de Stripe:', err.message);
+    res.status(500).json({ error: 'Error al procesar el pago. Inténtalo más tarde.' });
   }
 });
 
 // Arranque del servidor
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });
+
 
