@@ -21,7 +21,7 @@
   <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
 
   <style>
- body {
+    body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
@@ -310,9 +310,7 @@
     <p><strong>Cubres el coste con solo 3 personas al mes.</strong> Todo lo demás, es ganancia.</p>
     <p>Convierte tu red de contactos en tu fuente de ingresos, sin invertir más que tu suscripción mensual.</p>
     <p><em>💰 Comisión mensual por afiliado mientras mantenga su suscripción activa.</em></p>
-
-    <!-- BOTÓN CAMBIADO PARA CREAR SESIÓN DINÁMICA CON fp_tid -->
-    <button id="buyButton" class="cta-button">Únete ahora AQUÍ</button>
+    <a class="cta-button" href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" target="_blank" rel="noopener noreferrer">Únete ahora AQUÍ</a>
   </section>
 
   <section>
@@ -341,7 +339,7 @@
     © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.
   </footer>
 
-  <a href="#" class="floating-cta" id="floatingBuy" target="_self">🔥 Únete</a>
+  <a href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" class="floating-cta" target="_blank">🔥 Únete</a>
 
   <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
@@ -353,7 +351,6 @@
   </div>
 
   <script>
-    // Calculadora ganancia
     function calcular() {
       const directos = parseInt(document.getElementById('directos').value);
       const referidos = parseInt(document.getElementById('referidos').value);
@@ -364,69 +361,21 @@
     }
     calcular();
 
-    // Cookies
     function aceptarCookies() {
       const check = document.getElementById('cookieConsentCheck');
       if (check.checked) {
         document.getElementById('cookieBanner').classList.add('hidden');
-        localStorage.setItem('cookiesAccepted', 'true');
+        localStorage.setItem('cookiesAceptadas', 'true');
       } else {
-        alert('Por favor, acepta la política de cookies para continuar.');
+        alert("Debes aceptar la política de cookies para continuar.");
       }
     }
-    window.onload = () => {
-      if (localStorage.getItem('cookiesAccepted') === 'true') {
+
+    window.onload = function () {
+      if (localStorage.getItem('cookiesAceptadas') === 'true') {
         document.getElementById('cookieBanner').classList.add('hidden');
       }
     };
-
-    // Obtener tid de FirstPromoter
-    function getFPTid() {
-      return new Promise((resolve) => {
-        if (window.fpr && typeof window.fpr.get === 'function') {
-          window.fpr.get('tid', (tid) => {
-            resolve(tid);
-          });
-        } else {
-          resolve(null);
-        }
-      });
-    }
-
-    // Comprar con integración de fp_tid
-    document.getElementById('buyButton').addEventListener('click', async () => {
-      const tid = await getFPTid();
-
-      // Envía al backend el tid para crear la sesión
-      try {
-        const res = await fetch('https://ompulse-backend.onrender.com/api/create-checkout-session', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ fp_tid: tid })
-});
-
-        if (!res.ok) throw new Error('Error al crear sesión de pago');
-
-        const data = await res.json();
-
-        // Redirigir a Stripe Checkout
-        if (data.url) {
-          window.location.href = data.url;
-        } else {
-          alert('Error: no se pudo obtener la URL de Stripe.');
-        }
-      } catch (err) {
-        alert('Error al procesar el pago: ' + err.message);
-      }
-    });
-
-    // Floating button también dispara compra
-    document.getElementById('floatingBuy').addEventListener('click', async (e) => {
-      e.preventDefault();
-      document.getElementById('buyButton').click();
-    });
   </script>
 </body>
-</html>
+</html> 
