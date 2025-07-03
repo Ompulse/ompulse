@@ -4,33 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Preguntas Frecuentes - OMPULSE</title>
-  <link rel="icon" type="image/png" href="h%20copia.png">
+ <link rel="icon" type="image/png" href="h%20copia.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  
-  <!-- FirstPromoter: guardar fpr -->
-  <script>
-    (function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const fprParam = urlParams.get("fpr");
-      if (fprParam) {
-        localStorage.setItem("fpr_param", fprParam);
-      }
-    })();
-  </script>
-
-  <!-- FirstPromoter: fpr.js -->
-  <script>
-    (function(w){
-      w.fpr = w.fpr || function(){
-        w.fpr.q = w.fpr.q || [];
-        w.fpr.q[arguments[0] == 'set' ? 'unshift' : 'push'](arguments);
-      };
-    })(window);
-    fpr("init", {cid:"fzvofhq1"});
-    fpr("click");
-  </script>
-  <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -244,34 +219,5 @@
       }
     };
   </script>
-
-  <!-- FirstPromoter: modificar enlaces Stripe y páginas internas -->
-  <script>
-    (function () {
-      const fpr = localStorage.getItem("fpr_param");
-      if (fpr) {
-        const links = document.querySelectorAll("a[href*='stripe.com']");
-        links.forEach(link => {
-          const url = new URL(link.href);
-          url.searchParams.set("fpr", fpr);
-          link.href = url.toString();
-        });
-      }
-    })();
-  </script>
-  <script>
-    (function () {
-      const fpr = localStorage.getItem("fpr_param");
-      if (fpr) {
-        const internalLinks = document.querySelectorAll("a[href$='.html']");
-        internalLinks.forEach(link => {
-          const url = new URL(link.href, location.origin);
-          url.searchParams.set("fpr", fpr);
-          link.href = url.toString();
-        });
-      }
-    })();
-  </script>
 </body>
-</html>
-
+</html> 
