@@ -8,17 +8,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
-  <script>
-    (function(w){
-      w.fpr = w.fpr || function(){
-        w.fpr.q = w.fpr.q || [];
-        w.fpr.q[arguments[0] == 'set' ? 'unshift' : 'push'](arguments);
-      };
-    })(window);
-    fpr("init", {cid:"fzvofhq1"});
-    fpr("click");
+ <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
+fpr("init", {cid:"fzvofhq1"}); 
+fpr("click");
+</script>
+<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
+<script>
+    function getFPTid() {
+      return window.FPROM && window.FPROM.data.tid;
+    }
+    function initializeFPRPaymentLinks() {
+      console.log("initialized fpr on payment links");
+      setTimeout(function () {
+        var stripePaymentLinks = document.querySelectorAll(
+          'a[href^="https://buy.stripe.com/"]'
+        );
+        stripePaymentLinks.forEach(function (link) {
+          // Get current url
+          var oldStripePaymentUrl = link.getAttribute("href"); 
+          // Get the tid
+          var tid = getFPTid();
+          if (tid) {
+            var url = new URL(oldStripePaymentUrl);
+            url.searchParams.set('client_reference_id', tid);
+            link.setAttribute("href", url.toString());
+          }
+        });
+      }, 800);
+    }
+    if (window.attachEvent) {
+      window.attachEvent("onload", initializeFPRPaymentLinks);
+    } else {
+      window.addEventListener("load", initializeFPRPaymentLinks, false);
+    }
   </script>
-  <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
 
   <style>
     body {
@@ -376,40 +399,6 @@
         document.getElementById('cookieBanner').classList.add('hidden');
       }
     };
-  </script>
-<script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
-fpr("init", {cid:"fzvofhq1"}); 
-fpr("click");
-</script>
-<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
-<script>
-    function getFPTid() {
-      return window.FPROM && window.FPROM.data.tid;
-    }
-    function initializeFPRPaymentLinks() {
-      console.log("initialized fpr on payment links");
-      setTimeout(function () {
-        var stripePaymentLinks = document.querySelectorAll(
-          'a[href^="https://buy.stripe.com/"]'
-        );
-        stripePaymentLinks.forEach(function (link) {
-          // Get current url
-          var oldStripePaymentUrl = link.getAttribute("href"); 
-          // Get the tid
-          var tid = getFPTid();
-          if (tid) {
-            var url = new URL(oldStripePaymentUrl);
-            url.searchParams.set('client_reference_id', tid);
-            link.setAttribute("href", url.toString());
-          }
-        });
-      }, 800);
-    }
-    if (window.attachEvent) {
-      window.attachEvent("onload", initializeFPRPaymentLinks);
-    } else {
-      window.addEventListener("load", initializeFPRPaymentLinks, false);
-    }
   </script>
 
 <script src="https://cdn.firstpromoter.com/payment-links.js" async></script>
