@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legal - OMPULSE</title>
-  <link rel="icon" type="image/png" href="h%20copia.png">
+ <link rel="icon" type="image/png" href="h%20copia.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
@@ -193,6 +193,7 @@
     <p><strong>Innovative Education Group LLC</strong></p>
     <p>412 W 7th St, Clovis, NM, 88101, EE. UU.</p>
 
+
     <h2>Jurisdicción</h2>
     <p>
       Este sitio web opera bajo la jurisdicción del estado de Nuevo México, EE. UU. Cualquier disputa será resuelta conforme a la legislación vigente en dicho estado.
@@ -224,47 +225,11 @@
       }
     }
 
-    window.onload = function () {
+    window.onload = function() {
       if (localStorage.getItem('cookiesAceptadas') === 'true') {
         document.getElementById('cookieBanner').classList.add('hidden');
       }
     };
-
-    // Guardar parámetro fpr si existe en la URL
-    (function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const fpr = urlParams.get("fpr");
-      if (fpr) {
-        localStorage.setItem("fpr_param", fpr);
-      }
-    })();
-
-    // Añadir fpr a enlaces Stripe
-    (function () {
-      const fpr = localStorage.getItem("fpr_param");
-      if (fpr) {
-        const links = document.querySelectorAll("a[href*='stripe.com']");
-        links.forEach(link => {
-          const url = new URL(link.href);
-          url.searchParams.set("fpr", fpr);
-          link.href = url.toString();
-        });
-      }
-    })();
-
-    // Añadir fpr a enlaces internos .html
-    (function () {
-      const fpr = localStorage.getItem("fpr_param");
-      if (fpr) {
-        const internalLinks = document.querySelectorAll("a[href$='.html']");
-        internalLinks.forEach(link => {
-          const url = new URL(link.href, window.location.origin);
-          url.searchParams.set("fpr", fpr);
-          link.href = url.toString();
-        });
-      }
-    })();
   </script>
 </body>
 </html>
-
