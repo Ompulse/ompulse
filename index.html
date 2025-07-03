@@ -18,7 +18,7 @@
     fpr("init", {cid:"fzvofhq1"});
     fpr("click");
   </script>
-  <script src="https://cdn.firstpromoter.com/fpr.js" async defer></script>
+  <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
 
   <style>
     body {
@@ -295,7 +295,7 @@
     <p><strong>Cubres el coste con solo 3 personas al mes.</strong> Todo lo demás, es ganancia.</p>
     <p>Convierte tu red de contactos en tu fuente de ingresos, sin invertir más que tu suscripción mensual.</p>
     <p><em>💰 Comisión mensual por afiliado mientras mantenga su suscripción activa.</em></p>
-    <a class="cta-button" href="/api/create-checkout-session" onclick="event.preventDefault(); iniciarCompra();" target="_blank">Únete ahora AQUÍ</a>
+    <a class="cta-button" href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" target="_blank" rel="noopener noreferrer">Únete ahora AQUÍ</a>
   </section>
 
   <section>
@@ -324,7 +324,7 @@
     © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.
   </footer>
 
-  <a href="#" class="floating-cta" onclick="event.preventDefault(); iniciarCompra();">🔥 Únete</a>
+  <a href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" class="floating-cta" target="_blank">🔥 Únete</a>
 
   <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
@@ -346,26 +346,6 @@
     }
     calcular();
 
-    async function iniciarCompra() {
-      try {
-        const res = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        const data = await res.json();
-        if (data.url) {
-          window.location.href = data.url;
-        } else {
-          alert('No se pudo generar la sesión de Stripe. Intenta de nuevo.');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('Error en la conexión. Intenta más tarde.');
-      }
-    }
-
     function aceptarCookies() {
       const check = document.getElementById('cookieConsentCheck');
       if (check.checked) {
@@ -383,4 +363,4 @@
     };
   </script>
 </body>
-</html>
+</html>  
