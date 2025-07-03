@@ -399,13 +399,14 @@
 
       // Envía al backend el tid para crear la sesión
       try {
-        const res = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ fp_tid: tid })
-        });
+        const res = await fetch('https://ompulse-backend.onrender.com/api/create-checkout-session', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ fp_tid: tid })
+});
+
         if (!res.ok) throw new Error('Error al crear sesión de pago');
 
         const data = await res.json();
