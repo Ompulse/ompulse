@@ -2,36 +2,32 @@
 const express = require('express');
 const app = express();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const path = require('path');
-const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-// CONFIGURAR CORS
+// Configurar CORS para tu frontend
 app.use(cors({
   origin: 'https://ompulse.com',
   credentials: true,
 }));
 
-// Middleware
+// Middleware para parsear JSON en el body
 app.use(express.json());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '..')));
 
-// Ruta de salud para Render (opcional pero recomendado)
+// Ruta de salud (opcional)
 app.get('/healthz', (req, res) => {
   res.send('OK');
 });
 
-// Ruta de creación de sesión de Stripe Checkout
+// Ruta para crear sesión de Stripe Checkout
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
-    const tid = req.cookies['_fprom_tid'] || null;
+    const tid = req.body.fp_tid || null;
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price: 'price_1Rg1fUKDqWdaksGKHNDsOQTo', // Sustituye por tu precio real
+          price: 'price_1Rg1fUKDqWdaksGKHNDsOQTo', // Tu precio real
           quantity: 1,
         },
       ],
@@ -45,16 +41,14 @@ app.post('/api/create-checkout-session', async (req, res) => {
     });
 
     res.json({ url: session.url });
-  } catch (err) {
-    console.error('❌ Error al crear la sesión de Stripe:', err.message);
+  } catch (error) {
+    console.error('❌ Error al crear sesión de Stripe:', error.message);
     res.status(500).json({ error: 'Error al procesar el pago. Inténtalo más tarde.' });
   }
 });
 
-// Arranque del servidor
+// Levantar servidor
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });
-
-
