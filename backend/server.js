@@ -4,6 +4,9 @@ const app = express();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const cors = require('cors');
 
+// Verificar si la clave de Stripe está cargada
+console.log('STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY ? '✅ Loaded' : '❌ Missing');
+
 // Configurar CORS para tu frontend
 app.use(cors({
   origin: 'https://ompulse.com',
@@ -52,3 +55,4 @@ const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });
+
