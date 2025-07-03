@@ -6,6 +6,22 @@
   <title>Preguntas Frecuentes - OMPULSE</title>
  <link rel="icon" type="image/png" href="h%20copia.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- PRESERVAR PARAMETRO FPR ENTRE PAGINAS -->
+  <script>
+    (function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fpr = urlParams.get('fpr');
+      if (fpr) {
+        localStorage.setItem('fpr_ref', fpr);
+      }
+      const storedFpr = localStorage.getItem('fpr_ref');
+      if (storedFpr && !urlParams.get('fpr')) {
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('fpr', storedFpr);
+        window.history.replaceState({}, '', currentUrl);
+      }
+    })();
+  </script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
