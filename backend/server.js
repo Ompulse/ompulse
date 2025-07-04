@@ -50,6 +50,42 @@ app.post('/api/create-checkout-session', async (req, res) => {
   }
 });
 
+// Servir archivos estáticos
+app.use(express.static(path.join(__dirname)));
+
+// Redirecciones de *.html a rutas limpias
+const htmlRedirects = ['afiliados', 'preguntas', 'legal', 'index', 'success', 'cancel'];
+htmlRedirects.forEach(route => {
+  app.get(`/${route}.html`, (req, res) => {
+    res.redirect(301, `/${route}`);
+  });
+});
+
+// Rutas limpias sin .html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/preguntas', (req, res) => {
+  res.sendFile(path.join(__dirname, 'preguntas.html'));
+});
+
+app.get('/legal', (req, res) => {
+  res.sendFile(path.join(__dirname, 'legal.html'));
+});
+
+app.get('/afiliados', (req, res) => {
+  res.sendFile(path.join(__dirname, 'afiliados.html'));
+});
+
+app.get('/success', (req, res) => {
+  res.sendFile(path.join(__dirname, 'success.html'));
+});
+
+app.get('/cancel', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cancel.html'));
+});
+
 // Levantar servidor
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
