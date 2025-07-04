@@ -51,12 +51,32 @@
       border-radius: 1rem;
       margin-top: 2rem;
       box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+      transition: box-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+    }
+    .important:hover {
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+      transform: scale(1.02);
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li::before {
+      content: "✅ ";
+      color: #FFD700;
     }
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
       color: #aaa;
+    }
+    a {
+      color: #FFD700;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -70,22 +90,35 @@
     <h1>🎉 Tu acceso está en proceso</h1>
     <p>¡Estamos encantados de darte la bienvenida a la comunidad de OMPULSE!</p>
 
-   <div class="important">
-  <p><strong>✅ ¿Qué ocurre ahora?</strong></p>
-  <p>En un plazo máximo de <strong>48 horas</strong>, recibirás un correo electrónico con:</p>
-  <ul style="text-align: left; max-width: 600px; margin: 1.5rem auto;">
-    <li>🔐 Tus datos de acceso a la plataforma.</li>
-    <li>🧾 Verificación de tu cuenta como afiliado/a.</li>
-    <li>🔗 Tu enlace personal de recomendación para empezar a generar ingresos.</li>
-    <li>📈 Recursos exclusivos para ayudarte a hacer crecer tu red de forma rápida y efectiva.</li>
-  </ul>
-  <p><strong>IMPORTANTE:</strong> Revisa la bandeja de entrada del correo con el que realizaste la compra. Si no ves el email en 48h, revisa también la carpeta de SPAM o promociones.</p>
-</div>
+    <div class="important">
+      <p><strong>✅ ¿Qué ocurre ahora?</strong></p>
+      <p>En un plazo máximo de <strong>48 horas</strong>, recibirás un correo electrónico con:</p>
+      <ul style="text-align: left; max-width: 600px; margin: 1.5rem auto;">
+        <li>🔐 Tus datos de acceso a la plataforma.</li>
+        <li>🧾 Verificación de tu cuenta como afiliado/a.</li>
+        <li>🔗 Tu enlace personal de recomendación para empezar a generar ingresos.</li>
+        <li>🎁 Tu bono de bienvenida con recursos exclusivos para ayudarte a hacer crecer tu red de forma rápida y efectiva.</li>
+      </ul>
+      <p><strong>IMPORTANTE:</strong> Revisa la bandeja de entrada del correo con el que realizaste la compra. Si no ves el email en 48h, revisa también la carpeta de SPAM o promociones.</p>
+    </div>
 
+    <p style="margin-top: 2rem;">Mientras tanto, síguenos en nuestras redes para no perderte entrenamientos, novedades y lanzamientos:</p>
+    <p>
+      📱 Instagram: <a href="https://instagram.com/ompulse.online" target="_blank">@ompulse.online</a>
+    </p>
 
+    <p style="margin-top: 3rem; font-weight: bold; font-size: 1.3rem;">
+      🚀 Prepárate para llevar tu potencial al siguiente nivel. ¡Nos vemos dentro!
+    </p>
+
+    <p style="font-size: 0.95rem; color: #888; margin-top: 2rem;">
+      🔒 Tus datos están protegidos. Toda la información se gestiona con máxima seguridad y confidencialidad.
+    </p>
+  </section>
 
   <footer>
     © 2025 Ompulse. Todos los derechos reservados.
   </footer>
 </body>
 </html>
+
