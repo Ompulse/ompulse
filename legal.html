@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legal - OMPULSE</title>
- <link rel="icon" type="image/png" href="h%20copia.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="h%20copia.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <!-- PRESERVAR PARAMETRO FPR ENTRE PAGINAS -->
   <script>
     (function () {
@@ -72,7 +72,8 @@
       color: gold;
       margin-top: 2rem;
     }
-    p, li {
+    p,
+    li {
       line-height: 1.6;
     }
     footer {
@@ -94,12 +95,12 @@
       align-items: center;
       justify-content: space-between;
       z-index: 1000;
-      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
     }
     .cookie-banner.hidden {
       display: none;
     }
-    .cookie-banner input[type="checkbox"] {
+    .cookie-banner input[type='checkbox'] {
       margin-right: 0.5rem;
     }
     .cookie-banner button {
@@ -115,24 +116,47 @@
       color: gold;
       text-decoration: underline;
     }
-    .floating-buy-button {
+
+    /* Aquí está el nuevo estilo del botón flotante para que sea igual al de preguntas.html */
+    .floating-cta {
       position: fixed;
+      right: -20px;
       top: 50%;
-      right: 0;
       transform: translateY(-50%);
       background-color: #ff0000;
-      color: #fff;
+      color: white;
       padding: 1rem 1.5rem;
+      border-radius: 999px;
       font-weight: bold;
-      border-radius: 0.5rem 0 0 0.5rem;
-      box-shadow: -2px 2px 10px rgba(255, 0, 0, 0.4);
-      z-index: 999;
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
       text-decoration: none;
-      transition: background-color 0.3s;
+      z-index: 999;
+      animation: pulsate 2s infinite ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
     }
-    .floating-buy-button:hover {
+    .floating-cta:hover {
+      transform: translateY(-50%) scale(1.15);
+      box-shadow: 0 12px 28px rgba(255, 0, 0, 0.6);
       background-color: #cc0000;
     }
+
+    @keyframes pulsate {
+      0%,
+      100% {
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+        transform: translateY(-50%) scale(1);
+      }
+      50% {
+        box-shadow: 0 12px 28px rgba(255, 0, 0, 0.6);
+        transform: translateY(-50%) scale(1.1);
+      }
+    }
+
+    /* El botón scroll-top original no se modificó */
     .scroll-top-button {
       position: fixed;
       bottom: 20px;
@@ -145,7 +169,7 @@
       height: 50px;
       font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
       z-index: 998;
     }
   </style>
@@ -209,26 +233,30 @@
     <p><strong>Innovative Education Group LLC</strong></p>
     <p>412 W 7th St, Clovis, NM, 88101, EE. UU.</p>
 
-
     <h2>Jurisdicción</h2>
     <p>
       Este sitio web opera bajo la jurisdicción del estado de Nuevo México, EE. UU. Cualquier disputa será resuelta conforme a la legislación vigente en dicho estado.
     </p>
   </main>
 
-  <a class="floating-buy-button" href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" target="_blank" rel="noopener noreferrer">Únete</a>
+  <!-- Botón flotante con nuevo estilo igual a preguntas.html -->
+  <a class="floating-cta" href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" target="_blank" rel="noopener noreferrer">🔥 Únete</a>
 
   <footer>
-    © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.<br>
-    Al utilizar este sitio estás aceptando nuestra <a href="#cookies" style="color:gold;">política de cookies</a> y nuestros <a href="legal.html" style="color:gold;">términos legales</a>.
+    © 2025 Ompulse. Todos los derechos reservados. Esto no es asesoría financiera. Resultados variables.<br />
+    Al utilizar este sitio estás aceptando nuestra <a href="#cookies" style="color:gold;">política de cookies</a> y nuestros
+    <a href="legal.html" style="color:gold;">términos legales</a>.
   </footer>
 
   <div class="cookie-banner" id="cookieBanner">
-    <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="#cookies">política de cookies</a>.</label>
+    <label
+      ><input type="checkbox" id="cookieConsentCheck" /> He leído y acepto la
+      <a href="#cookies">política de cookies</a>.
+    </label>
     <button onclick="aceptarCookies()">Aceptar</button>
   </div>
 
-  <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+  <button class="scroll-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
 
   <script>
     function aceptarCookies() {
@@ -241,80 +269,92 @@
       }
     }
 
-    window.onload = function() {
+    window.onload = function () {
       if (localStorage.getItem('cookiesAceptadas') === 'true') {
         document.getElementById('cookieBanner').classList.add('hidden');
       }
     };
   </script>
- <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
- <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
-fpr("init", {cid:"fzvofhq1"}); 
-fpr("click");
-</script>
-<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
-<script>
+  <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
+  <script>
+    (function (w) {
+      w.fpr =
+        w.fpr ||
+        function () {
+          w.fpr.q = w.fpr.q || [];
+          w.fpr.q[arguments[0] == 'set' ? 'unshift' : 'push'](arguments);
+        };
+    })(window);
+    fpr('init', { cid: 'fzvofhq1' });
+    fpr('click');
+  </script>
+  <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
+  <script>
     function getFPTid() {
       return window.FPROM && window.FPROM.data.tid;
     }
     function initializeFPRPaymentLinks() {
-      console.log("initialized fpr on payment links");
+      console.log('initialized fpr on payment links');
       setTimeout(function () {
-        var stripePaymentLinks = document.querySelectorAll(
-          'a[href^="https://buy.stripe.com/"]'
-        );
+        var stripePaymentLinks = document.querySelectorAll('a[href^="https://buy.stripe.com/"]');
         stripePaymentLinks.forEach(function (link) {
           // Get current url
-          var oldStripePaymentUrl = link.getAttribute("href"); 
+          var oldStripePaymentUrl = link.getAttribute('href');
           // Get the tid
           var tid = getFPTid();
           if (tid) {
             var url = new URL(oldStripePaymentUrl);
             url.searchParams.set('client_reference_id', tid);
-            link.setAttribute("href", url.toString());
+            link.setAttribute('href', url.toString());
           }
         });
       }, 800);
     }
     if (window.attachEvent) {
-      window.attachEvent("onload", initializeFPRPaymentLinks);
+      window.attachEvent('onload', initializeFPRPaymentLinks);
     } else {
-      window.addEventListener("load", initializeFPRPaymentLinks, false);
+      window.addEventListener('load', initializeFPRPaymentLinks, false);
     }
   </script>
- <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
- <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
-fpr("init", {cid:"fzvofhq1"}); 
-fpr("click");
-</script>
-<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
-<script>
+  <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
+  <script>
+    (function (w) {
+      w.fpr =
+        w.fpr ||
+        function () {
+          w.fpr.q = w.fpr.q || [];
+          w.fpr.q[arguments[0] == 'set' ? 'unshift' : 'push'](arguments);
+        };
+    })(window);
+    fpr('init', { cid: 'fzvofhq1' });
+    fpr('click');
+  </script>
+  <script src="https://cdn.firstpromoter.com/fpr.js" async></script>
+  <script>
     function getFPTid() {
       return window.FPROM && window.FPROM.data.tid;
     }
     function initializeFPRPaymentLinks() {
-      console.log("initialized fpr on payment links");
+      console.log('initialized fpr on payment links');
       setTimeout(function () {
-        var stripePaymentLinks = document.querySelectorAll(
-          'a[href^="https://buy.stripe.com/"]'
-        );
+        var stripePaymentLinks = document.querySelectorAll('a[href^="https://buy.stripe.com/"]');
         stripePaymentLinks.forEach(function (link) {
           // Get current url
-          var oldStripePaymentUrl = link.getAttribute("href"); 
+          var oldStripePaymentUrl = link.getAttribute('href');
           // Get the tid
           var tid = getFPTid();
           if (tid) {
             var url = new URL(oldStripePaymentUrl);
             url.searchParams.set('client_reference_id', tid);
-            link.setAttribute("href", url.toString());
+            link.setAttribute('href', url.toString());
           }
         });
       }, 800);
     }
     if (window.attachEvent) {
-      window.attachEvent("onload", initializeFPRPaymentLinks);
+      window.attachEvent('onload', initializeFPRPaymentLinks);
     } else {
-      window.addEventListener("load", initializeFPRPaymentLinks, false);
+      window.addEventListener('load', initializeFPRPaymentLinks, false);
     }
   </script>
 </body>
