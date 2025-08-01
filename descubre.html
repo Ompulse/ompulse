@@ -463,6 +463,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     };
   </script>
 
+<script>
+  if (!localStorage.getItem('visitaRegistrada')) {
+    fetch('https://api.counterapi.dev/v2/workspaces/ompulse/visitas-descubre', {
+      method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Visita registrada:', data);
+      localStorage.setItem('visitaRegistrada', 'true');
+    })
+    .catch(error => console.error('Error registrando visita:', error));
+  } else {
+    console.log('Visita ya registrada en este navegador.');
+  }
+</script>
+
+
 <script src="https://cdn.firstpromoter.com/payment-links.js" async></script>
 </body>
 </html> 
