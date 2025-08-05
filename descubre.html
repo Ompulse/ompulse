@@ -68,33 +68,37 @@ fpr("click");
     background: #000;
     color: #fff;
   }
-  header {
-    position: relative; /* para que el texto y la imagen se posicionen correctamente */
-    background: linear-gradient(to bottom, #ff0000, #000);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    overflow: hidden; /* para evitar que la imagen sobresalga */
-    min-height: 320px; /* altura mínima para que el header no se quede pequeño */
-  }
-  .header-background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw; /* ancho total de la ventana */
-    max-width: 100%;
-    height: auto; /* para mantener la proporción */
-    opacity: 0.4;
-    z-index: 0;
-    object-fit: cover; /* para que la imagen rellene el área sin deformarse */
-    pointer-events: none; /* que la imagen no interfiera con clicks */
-  }
-  .header-text {
-    position: relative; /* para que esté encima de la imagen */
-    z-index: 1;
-    max-width: 90%;
-    margin: 0 auto;
-  }
+header {
+  position: relative;
+  background: linear-gradient(to bottom, #ff0000, #000); /* degradado */
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
+  min-height: 320px;
+  z-index: 1; /* para que el header mismo esté por encima si hay algo */
+}
+
+.header-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;  /* para que ocupe toda la altura del header */
+  max-width: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  z-index: 0; /* la imagen está justo encima del fondo (degradado) pero detrás del texto */
+  pointer-events: none;
+}
+
+.header-text {
+  position: relative;
+  z-index: 2; /* texto arriba de la imagen */
+  max-width: 90%;
+  margin: 0 auto;
+}
+
   .menu {
     position: absolute;
     top: 1rem;
