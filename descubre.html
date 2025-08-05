@@ -19,10 +19,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OMPULSE - Revista Nº1 de Negocios Digitales</title>
-  <link rel="icon" type="image/png" href="h%20copia.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="h%20copia.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
  <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
@@ -35,12 +35,15 @@ fpr("click");
       return window.FPROM && window.FPROM.data.tid;
     }
     function initializeFPRPaymentLinks() {
+      console.log("initialized fpr on payment links");
       setTimeout(function () {
         var stripePaymentLinks = document.querySelectorAll(
           'a[href^="https://buy.stripe.com/"]'
         );
         stripePaymentLinks.forEach(function (link) {
+          // Get current url
           var oldStripePaymentUrl = link.getAttribute("href"); 
+          // Get the tid
           var tid = getFPTid();
           if (tid) {
             var url = new URL(oldStripePaymentUrl);
@@ -66,19 +69,16 @@ fpr("click");
       color: #fff;
     }
     header {
-      position: relative;
       background: linear-gradient(to bottom, #ff0000, #000);
       color: white;
       padding: 2rem;
       text-align: center;
-      overflow: hidden;
-      min-height: 320px;
+      position: relative;
     }
     .menu {
       position: absolute;
       top: 1rem;
       right: 2rem;
-      z-index: 20;
     }
     .menu a {
       color: white;
@@ -104,9 +104,17 @@ fpr("click");
     header h2 {
       font-size: 1.5rem;
       margin-top: 1rem;
-      z-index: 10;
-      position: relative;
     }
+    section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      font-weight: 800;
+    }
+
+    /* Añadido para la imagen de fondo */
     .header-background-image {
       position: absolute;
       top: 0;
@@ -117,27 +125,13 @@ fpr("click");
       z-index: 1;
       opacity: 0.4;
     }
-    .header-text {
-      position: relative;
-      z-index: 10;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h1, h2 {
-      font-weight: 800;
-    }
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
   <header>
     <div class="menu">
@@ -147,16 +141,17 @@ fpr("click");
       <a href="contacto.html">Contacta</a>
     </div>
 
-   <img src="https://raw.githubusercontent.com/Ompulse/ompulse/main/Logo%20ompulse%20web%20copia.png" alt="Logo OMPULSE" class="header-background-image" />
+    <!-- Imagen de fondo añadida -->
+    <img src="https://raw.githubusercontent.com/Ompulse/ompulse/main/Logo%20ompulse%20web%20copia.png" alt="Logo OMPULSE" class="header-background-image" />
 
-
-    <div class="header-text">
-      <div class="gold-text">OMPULSE</div>
-      <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
-      <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
-      <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
-    </div>
+    <div class="gold-text">OMPULSE</div>
+    <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
+    <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
+    <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
   </header>
+</body>
+</html>
+
 
   <section>
     <h2>¿Qué es?</h2>
