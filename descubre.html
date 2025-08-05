@@ -60,6 +60,12 @@ fpr("click");
     }
   </script>
 
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OMPULSE</title>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -69,16 +75,18 @@ fpr("click");
       color: #fff;
     }
     header {
+      position: relative;
       background: linear-gradient(to bottom, #ff0000, #000);
       color: white;
       padding: 2rem;
       text-align: center;
-      position: relative;
+      overflow: hidden;
     }
     .menu {
       position: absolute;
       top: 1rem;
       right: 2rem;
+      z-index: 20;
     }
     .menu a {
       color: white;
@@ -275,25 +283,49 @@ fpr("click");
     .hidden {
       display: none;
     }
+
+    /* Nueva clase para la imagen de fondo en el header */
+    .header-background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.4;
+    }
+    /* Contenedor del texto con z-index alto para estar encima de la imagen */
+    .header-text {
+      position: relative;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <header>
     <div class="menu">
       <a href="index.html">Inicio</a>
       <a href="preguntas.html">Preguntas frecuentes</a>
       <a href="legal.html">Legal</a>
-<a href="contacto.html">Contacta</a>
+      <a href="contacto.html">Contacta</a>
     </div>
-    <div class="gold-text">OMPULSE</div>
-    <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
-    <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
-    <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
+
+    <img src="https://raw.githubusercontent.com/Ompulse/ompulse/main/fondo.png" alt="Fondo OMPULSE" class="header-background-image" />
+
+    <div class="header-text">
+      <div class="gold-text">OMPULSE</div>
+      <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
+      <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
+      <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
+    </div>
   </header>
 
   <section>
@@ -303,6 +335,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>Con <strong>OMPULSE</strong> tienes esa misma oportunidad, pero sin stock, sin complicaciones, y con un producto que aporta conocimiento y transformación real a quien lo recibe. Sin rodeos: tienes un negocio real, que funciona, y meritocrático. Montado para que puedas empezar a ganar desde el día 1.</p>
     <p>Aprende, crece y ayuda a otros a cambiar su vida. Y sí, puedes hacerlo <strong>trabajando desde casa</strong>, desde tu móvil, desde donde quieras.</p>
   </section>
+</body>
+</html>
 
   <section>
     <h2>¿Cómo funciona?</h2>
