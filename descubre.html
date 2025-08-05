@@ -60,233 +60,244 @@ fpr("click");
     }
   </script>
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-    }
-    header {
-      background: linear-gradient(to bottom, #ff0000, #000);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-    }
-.header-background-image {
-  display: block;        /* para que no tenga espacios abajo tipo inline */
-  width: 100vw;          /* ancho máximo según viewport */
-  max-width: 100%;       /* nunca más ancho que su contenedor */
-  height: auto;          /* mantiene proporción */
-  position: relative;    /* o puedes quitar posición */
-  opacity: 0.4;
-  z-index: 0;            /* detrás del texto si usas z-index en otros elementos */
-}
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+  }
+  header {
+    position: relative; /* para que el texto y la imagen se posicionen correctamente */
+    background: linear-gradient(to bottom, #ff0000, #000);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    overflow: hidden; /* para evitar que la imagen sobresalga */
+    min-height: 320px; /* altura mínima para que el header no se quede pequeño */
+  }
+  .header-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; /* ancho total de la ventana */
+    max-width: 100%;
+    height: auto; /* para mantener la proporción */
+    opacity: 0.4;
+    z-index: 0;
+    object-fit: cover; /* para que la imagen rellene el área sin deformarse */
+    pointer-events: none; /* que la imagen no interfiera con clicks */
+  }
+  .header-text {
+    position: relative; /* para que esté encima de la imagen */
+    z-index: 1;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .menu {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    z-index: 20;
+  }
+  .menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .menu a:hover {
+    color: gold;
+  }
+  .gold-text {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
+    letter-spacing: 0.2rem;
+  }
+  header h2 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  section {
+    padding: 3rem 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  h1, h2 {
+    font-weight: 800;
+  }
+  .benefits {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 2rem 0;
+  }
+  .benefit {
+    background: #222;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(255,0,0,0.3);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .benefit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(255,0,0,0.5);
+    cursor: pointer;
+  }
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .testimonial {
+    background: #222;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(255,0,0,0.3);
+  }
+  .testimonial-name {
+    background: #111;
+    padding: 0.75rem;
+    font-weight: bold;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    text-align: center;
+  }
+  .testimonial-text {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  .price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0;
+  }
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #ff0000;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    margin-top: 1rem;
+  }
+  .calc-container {
+    background: #222;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(255,0,0,0.3);
+    margin-top: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .calc-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(255,0,0,0.5);
+    cursor: pointer;
+  }
+  label {
+    display: block;
+    margin-top: 1.5rem;
+    font-weight: 600;
+  }
+  input[type=range] {
+    width: 100%;
+    accent-color: gold;
+  }
+  .result {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  .scroll-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  @keyframes pulsate {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.05); }
+    100% { transform: translateY(-50%) scale(1); }
+  }
+  .floating-cta {
+    position: fixed;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ff0000;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 999px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(255,0,0,0.4);
+    text-decoration: none;
+    z-index: 999;
+    animation: pulsate 2s infinite ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .floating-cta:hover {
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 12px 28px rgba(255,0,0,0.6);
+  }
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #111;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+  }
+  .cookie-banner button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+  .cookie-banner input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  .cookie-banner a {
+    color: gold;
+    text-decoration: underline;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
 
-
-    .menu {
-      position: absolute;
-      top: 1rem;
-      right: 2rem;
-    }
-    .menu a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    .menu a:hover {
-      color: gold;
-    }
-    .gold-text {
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(to right, #FFD700, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
-      letter-spacing: 0.2rem;
-    }
-    header h2 {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h1, h2 {
-      font-weight: 800;
-    }
-    .benefits {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      margin: 2rem 0;
-    }
-    .benefit {
-      background: #222;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(255,0,0,0.3);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .benefit:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 28px rgba(255,0,0,0.5);
-      cursor: pointer;
-    }
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-    .testimonial {
-      background: #222;
-      border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(255,0,0,0.3);
-    }
-    .testimonial-name {
-      background: #111;
-      padding: 0.75rem;
-      font-weight: bold;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-      text-align: center;
-    }
-    .testimonial-text {
-      padding: 1rem;
-      font-size: 0.95rem;
-    }
-    .price {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 2rem 0;
-    }
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: #ff0000;
-      color: white;
-      font-weight: 600;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      margin-top: 1rem;
-    }
-    .calc-container {
-      background: #222;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(255,0,0,0.3);
-      margin-top: 2rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .calc-container:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 28px rgba(255,0,0,0.5);
-      cursor: pointer;
-    }
-    label {
-      display: block;
-      margin-top: 1.5rem;
-      font-weight: 600;
-    }
-    input[type=range] {
-      width: 100%;
-      accent-color: gold;
-    }
-    .result {
-      margin-top: 2rem;
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-    .scroll-top-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ff0000;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    @keyframes pulsate {
-      0% { transform: translateY(-50%) scale(1); }
-      50% { transform: translateY(-50%) scale(1.05); }
-      100% { transform: translateY(-50%) scale(1); }
-    }
-    .floating-cta {
-      position: fixed;
-      right: -20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: #ff0000;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 999px;
-      font-weight: bold;
-      box-shadow: 0 8px 20px rgba(255,0,0,0.4);
-      text-decoration: none;
-      z-index: 999;
-      animation: pulsate 2s infinite ease-in-out;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .floating-cta:hover {
-      transform: translateY(-50%) scale(1.15);
-      box-shadow: 0 12px 28px rgba(255,0,0,0.6);
-    }
-    .cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: #111;
-      color: white;
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
-      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
-    }
-    .cookie-banner button {
-      background-color: #ff0000;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      margin-left: 1rem;
-      cursor: pointer;
-    }
-    .cookie-banner input[type="checkbox"] {
-      margin-right: 0.5rem;
-    }
-    .cookie-banner a {
-      color: gold;
-      text-decoration: underline;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
