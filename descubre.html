@@ -19,10 +19,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OMPULSE - Revista Nº1 de Negocios Digitales</title>
-  <link rel="icon" type="image/png" href="h%20copia.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="h%20copia.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
  <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
@@ -35,12 +35,15 @@ fpr("click");
       return window.FPROM && window.FPROM.data.tid;
     }
     function initializeFPRPaymentLinks() {
+      console.log("initialized fpr on payment links");
       setTimeout(function () {
         var stripePaymentLinks = document.querySelectorAll(
           'a[href^="https://buy.stripe.com/"]'
         );
         stripePaymentLinks.forEach(function (link) {
+          // Get current url
           var oldStripePaymentUrl = link.getAttribute("href"); 
+          // Get the tid
           var tid = getFPTid();
           if (tid) {
             var url = new URL(oldStripePaymentUrl);
@@ -66,19 +69,27 @@ fpr("click");
       color: #fff;
     }
     header {
-      position: relative;
       background: linear-gradient(to bottom, #ff0000, #000);
       color: white;
       padding: 2rem;
       text-align: center;
-      overflow: hidden;
-      min-height: 320px;
+      position: relative;
     }
+.header-background-image {
+  display: block;        /* para que no tenga espacios abajo tipo inline */
+  width: 100vw;          /* ancho máximo según viewport */
+  max-width: 100%;       /* nunca más ancho que su contenedor */
+  height: auto;          /* mantiene proporción */
+  position: relative;    /* o puedes quitar posición */
+  opacity: 0.4;
+  z-index: 0;            /* detrás del texto si usas z-index en otros elementos */
+}
+
+
     .menu {
       position: absolute;
       top: 1rem;
       right: 2rem;
-      z-index: 20;
     }
     .menu a {
       color: white;
@@ -104,22 +115,6 @@ fpr("click");
     header h2 {
       font-size: 1.5rem;
       margin-top: 1rem;
-      z-index: 10;
-      position: relative;
-    }
-    .header-background-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-      opacity: 0.4;
-    }
-    .header-text {
-      position: relative;
-      z-index: 10;
     }
     section {
       padding: 3rem 2rem;
@@ -129,35 +124,189 @@ fpr("click");
     h1, h2 {
       font-weight: 800;
     }
+    .benefits {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin: 2rem 0;
+    }
+    .benefit {
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 20px rgba(255,0,0,0.3);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .benefit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(255,0,0,0.5);
+      cursor: pointer;
+    }
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: #222;
+      border-radius: 1rem;
+      box-shadow: 0 6px 20px rgba(255,0,0,0.3);
+    }
+    .testimonial-name {
+      background: #111;
+      padding: 0.75rem;
+      font-weight: bold;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      text-align: center;
+    }
+    .testimonial-text {
+      padding: 1rem;
+      font-size: 0.95rem;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #ff0000;
+      color: white;
+      font-weight: 600;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      margin-top: 1rem;
+    }
+    .calc-container {
+      background: #222;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 20px rgba(255,0,0,0.3);
+      margin-top: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .calc-container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(255,0,0,0.5);
+      cursor: pointer;
+    }
+    label {
+      display: block;
+      margin-top: 1.5rem;
+      font-weight: 600;
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: gold;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    @keyframes pulsate {
+      0% { transform: translateY(-50%) scale(1); }
+      50% { transform: translateY(-50%) scale(1.05); }
+      100% { transform: translateY(-50%) scale(1); }
+    }
+    .floating-cta {
+      position: fixed;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #ff0000;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(255,0,0,0.4);
+      text-decoration: none;
+      z-index: 999;
+      animation: pulsate 2s infinite ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .floating-cta:hover {
+      transform: translateY(-50%) scale(1.15);
+      box-shadow: 0 12px 28px rgba(255,0,0,0.6);
+    }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+    }
+    .cookie-banner button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    .cookie-banner input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    .cookie-banner a {
+      color: gold;
+      text-decoration: underline;
+    }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
   <header>
     <div class="menu">
       <a href="index.html">Inicio</a>
       <a href="preguntas.html">Preguntas frecuentes</a>
       <a href="legal.html">Legal</a>
-      <a href="contacto.html">Contacta</a>
+<a href="contacto.html">Contacta</a>
     </div>
-
-   <img src="https://raw.githubusercontent.com/Ompulse/ompulse/main/Logo%20ompulse%20web%20copia.png" alt="Logo OMPULSE" class="header-background-image" />
-
-
-    <div class="header-text">
-      <div class="gold-text">OMPULSE</div>
-      <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
-      <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
-      <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
-    </div>
+ <img src="https://raw.githubusercontent.com/Ompulse/ompulse/main/Logo%20ompulse%20web%20copia.png" alt="Logo OMPULSE" class="header-background-image" />
+    <div class="gold-text">OMPULSE</div>
+    <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
+    <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
+    <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
   </header>
-
 
   <section>
     <h2>¿Qué es?</h2>
@@ -166,9 +315,6 @@ fpr("click");
     <p>Con <strong>OMPULSE</strong> tienes esa misma oportunidad, pero sin stock, sin complicaciones, y con un producto que aporta conocimiento y transformación real a quien lo recibe. Sin rodeos: tienes un negocio real, que funciona, y meritocrático. Montado para que puedas empezar a ganar desde el día 1.</p>
     <p>Aprende, crece y ayuda a otros a cambiar su vida. Y sí, puedes hacerlo <strong>trabajando desde casa</strong>, desde tu móvil, desde donde quieras.</p>
   </section>
-</body>
-</html>
-
 
   <section>
     <h2>¿Cómo funciona?</h2>
