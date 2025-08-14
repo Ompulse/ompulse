@@ -334,7 +334,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section>
     <h2>¿Cuánto podrías ganar?</h2>
-<p>Utiliza la calculadora⬇️</p>
+<p>Utiliza la calculadora⬇️ Mira el potencial de tu equipo.</p>
     <div class="calc-container">
       <label for="directos">¿Cuántas personas vas a ayudar directamente?</label>
       <input type="range" id="directos" name="directos" min="0" max="200" value="10" oninput="calcular()">
@@ -343,6 +343,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="referidos">Promedio de personas que recomendarán tus referidos</label>
       <input type="range" id="referidos" name="referidos" min="0" max="50" value="5" oninput="calcular()">
       <span id="valReferidos">5</span>
+
+<label for="terceros">Promedio de personas que recomendarán los referidos de tus referidos</label>
+<input type="range" id="terceros" name="terceros" min="0" max="50" value="2" oninput="calcular()">
+<span id="valTerceros">5</span>
+
 
       <div class="result">Ganancia mensual estimada: <span id="resultado">800€</span></div>
     </div>
@@ -465,15 +470,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <script>
-    function calcular() {
-      const directos = parseInt(document.getElementById('directos').value);
-      const referidos = parseInt(document.getElementById('referidos').value);
-      document.getElementById('valDirectos').innerText = directos;
-      document.getElementById('valReferidos').innerText = referidos;
-      const ganancia = (directos * 50) + (directos * referidos * 10);
-      document.getElementById('resultado').innerText = ganancia + '€';
-    }
-    calcular();
+   function calcular() {
+  const directos = parseInt(document.getElementById('directos').value);
+  const referidos = parseInt(document.getElementById('referidos').value);
+  const terceros = parseInt(document.getElementById('terceros').value);
+
+  document.getElementById('valDirectos').innerText = directos;
+  document.getElementById('valReferidos').innerText = referidos;
+  document.getElementById('valTerceros').innerText = terceros;
+
+  const ganancia = (directos * 50) + 
+                   (directos * referidos * 10) + 
+                   (directos * referidos * terceros * 5);
+
+  document.getElementById('resultado').innerText = ganancia + '€';
+}
+calcular();
+
 
     function aceptarCookies() {
       const check = document.getElementById('cookieConsentCheck');
