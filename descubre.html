@@ -1,504 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VV6QJ0W7EP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VV6QJ0W7EP');
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5M4G7LJW');</script>
-<!-- End Google Tag Manager -->
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OMPULSE - Revista Nº1 de Negocios Digitales</title>
-  <link rel="icon" type="image/png" href="h%20copia.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico Robot de Trading - OMPULSE</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
- <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
-fpr("init", {cid:"fzvofhq1"}); 
-fpr("click");
-</script>
-<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
-<script>
-    function getFPTid() {
-      return window.FPROM && window.FPROM.data.tid;
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    function initializeFPRPaymentLinks() {
-      console.log("initialized fpr on payment links");
-      setTimeout(function () {
-        var stripePaymentLinks = document.querySelectorAll(
-          'a[href^="https://buy.stripe.com/"]'
-        );
-        stripePaymentLinks.forEach(function (link) {
-          // Get current url
-          var oldStripePaymentUrl = link.getAttribute("href"); 
-          // Get the tid
-          var tid = getFPTid();
-          if (tid) {
-            var url = new URL(oldStripePaymentUrl);
-            url.searchParams.set('client_reference_id', tid);
-            link.setAttribute("href", url.toString());
-          }
-        });
-      }, 800);
+    h1 {
+      font-size: 2rem;
+      background: linear-gradient(to right, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2rem;
     }
-    if (window.attachEvent) {
-      window.attachEvent("onload", initializeFPRPaymentLinks);
-    } else {
-      window.addEventListener("load", initializeFPRPaymentLinks, false);
+    #graficoRobot {
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      background-color: #111;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      padding: 1rem;
     }
-  </script>
-
-<style>
-  body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #000;
-    color: #fff;
-  }
-  header {
-    position: relative; /* para que el texto y la imagen se posicionen correctamente */
-    background: linear-gradient(to bottom, #ff0000, #000);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    overflow: hidden; /* para evitar que la imagen sobresalga */
-    min-height: 320px; /* altura mínima para que el header no se quede pequeño */
-  }
-  .header-background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw; /* ancho total de la ventana */
-    max-width: 100%;
-    height: auto; /* para mantener la proporción */
-    opacity: 0.4;
-    z-index: 0;
-    object-fit: cover; /* para que la imagen rellene el área sin deformarse */
-    pointer-events: none; /* que la imagen no interfiera con clicks */
-  }
-  .header-text {
-    position: relative; /* para que esté encima de la imagen */
-    z-index: 2;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-  .menu {
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    z-index: 20;
-  }
-  .menu a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-  .menu a:hover {
-    color: gold;
-  }
-  .gold-text {
-    font-size: 4rem;
-    font-weight: 800;
-    background: linear-gradient(to right, #FFD700, #FFA500);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
-    letter-spacing: 0.2rem;
-  }
-  header h2 {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-  }
-  section {
-    padding: 3rem 2rem;
-    max-width: 1000px;
-    margin: auto;
-  }
-  h1, h2 {
-    font-weight: 800;
-  }
-  .benefits {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin: 2rem 0;
-  }
-  .benefit {
-    background: #222;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(255,0,0,0.3);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .benefit:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 28px rgba(255,0,0,0.5);
-    cursor: pointer;
-  }
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-  .testimonial {
-    background: #222;
-    border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(255,0,0,0.3);
-  }
-  .testimonial-name {
-    background: #111;
-    padding: 0.75rem;
-    font-weight: bold;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    text-align: center;
-  }
-  .testimonial-text {
-    padding: 1rem;
-    font-size: 0.95rem;
-  }
-  .price {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 2rem 0;
-  }
-  .cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: #ff0000;
-    color: white;
-    font-weight: 600;
-    border-radius: 0.75rem;
-    text-decoration: none;
-    margin-top: 1rem;
-  }
-  .calc-container {
-    background: #222;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(255,0,0,0.3);
-    margin-top: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .calc-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 28px rgba(255,0,0,0.5);
-    cursor: pointer;
-  }
-  label {
-    display: block;
-    margin-top: 1.5rem;
-    font-weight: 600;
-  }
-  input[type=range] {
-    width: 100%;
-    accent-color: gold;
-  }
-  .result {
-    margin-top: 2rem;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
-    color: #aaa;
-  }
-  .scroll-top-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  }
-  @keyframes pulsate {
-    0% { transform: translateY(-50%) scale(1); }
-    50% { transform: translateY(-50%) scale(1.05); }
-    100% { transform: translateY(-50%) scale(1); }
-  }
-  .floating-cta {
-    position: fixed;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #ff0000;
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 999px;
-    font-weight: bold;
-    box-shadow: 0 8px 20px rgba(255,0,0,0.4);
-    text-decoration: none;
-    z-index: 999;
-    animation: pulsate 2s infinite ease-in-out;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .floating-cta:hover {
-    transform: translateY(-50%) scale(1.15);
-    box-shadow: 0 12px 28px rgba(255,0,0,0.6);
-  }
-  .cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #111;
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
-  }
-  .cookie-banner button {
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    margin-left: 1rem;
-    cursor: pointer;
-  }
-  .cookie-banner input[type="checkbox"] {
-    margin-right: 0.5rem;
-  }
-  .cookie-banner a {
-    color: gold;
-    text-decoration: underline;
-  }
-  .hidden {
-    display: none;
-  }
-</style>
-
+  </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5M4G7LJW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<header>
-  <div class="menu">
-    <a href="index.html">Inicio</a>
-    <a href="preguntas.html">Preguntas frecuentes</a>
-    <a href="legal.html">Legal</a>
-    <a href="contacto.html">Contacta</a>
-  </div>
-
-  <img src="https://raw.githubusercontent.com/Ompulse/ompulse/main/Logo%20ompulse%20web%20copia.png" alt="Logo OMPULSE" class="header-background-image" />
-
-  <div class="header-text">
-    <div class="gold-text">OMPULSE</div>
-    <h2>REVISTA Nº1 GLOBAL DE NEGOCIOS DIGITALES</h2>
-    <p>La única revista con la que puedes ganar dinero online desde el primer día</p>
-    <p style="margin-top:1rem;font-size:1.2rem;">Empieza hoy a generar ingresos trabajando desde casa</p>
-  </div>
-</header>
-
-
-  <section>
-    <h2>¿Qué es?</h2>
-    <p>OMPULSE es la revista Nº1 de negocios digitales que te permite aprender, crecer y generar ingresos desde el primer momento. Con contenido de valor real y un sistema de recomendación justo y potente.</p>
-    <p>Seguro que si te digo "marca verde de batidos alimenticios" ya sabes a quién me refiero. Muchas empresas han construido redes exitosas gracias a las recomendaciones boca a boca.</p>
-    <p>Con <strong>OMPULSE</strong> tienes esa misma oportunidad, pero sin stock, sin complicaciones, y con un producto que aporta conocimiento y transformación real a quien lo recibe. Sin rodeos: tienes un negocio real, que funciona, y meritocrático. Montado para que puedas empezar a ganar desde el día 1.</p>
-    <p>Aprende, crece y ayuda a otros a cambiar su vida. Y sí, puedes hacerlo <strong>trabajando desde casa</strong>, desde tu móvil, desde donde quieras.</p>
-  </section>
-
-  <section>
-    <h2>¿Cuánto podrías ganar?</h2>
-<p>Utiliza la calculadora⬇️ Mira el potencial de tu equipo.</p>
-    <div class="calc-container">
-      <label for="directos">¿Cuántas personas vas a ayudar directamente?</label>
-      <input type="range" id="directos" name="directos" min="0" max="200" value="10" oninput="calcular()">
-      <span id="valDirectos">10</span>
-
-      <label for="referidos">Promedio de personas que recomendarán tus referidos</label>
-      <input type="range" id="referidos" name="referidos" min="0" max="50" value="5" oninput="calcular()">
-      <span id="valReferidos">5</span>
-
-<label for="terceros">Promedio de personas que recomendarán el equipo de tus referidos</label>
-<input type="range" id="terceros" name="terceros" min="0" max="50" value="2" oninput="calcular()">
-<span id="valTerceros">5</span>
-
-
-      <div class="result">Ganancia mensual estimada: <span id="resultado">800€</span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>¿Cómo funciona?</h2>
-    <div class="benefits">
-      <div class="benefit">🧠 1. Consumes el contenido exclusivo de la revista y te formas en negocios digitales.</div>
-      <div class="benefit">🤝 2. Compartes OMPULSE con otras personas interesadas en mejorar su vida profesional.</div>
-      <div class="benefit">💸 3. Ganas dinero con cada referido y creces tu red mes a mes.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>¿Por qué OMPULSE?</h2>
-    <div class="benefits">
-      <div class="benefit">📘 Aprende sobre negocios digitales reales</div>
-      <div class="benefit">💰 Gana dinero desde el primer día</div>
-      <div class="benefit">⚙️ Sistema fácil y sin complicaciones</div>
-      <div class="benefit">🌍 Comparte con personas desde cualquier lugar</div>
-      <div class="benefit">💼 Sin jefes ni horarios</div>
-      <div class="benefit">📈 Escala tus ingresos mes a mes</div>
-      <div class="benefit">🧠 Contenido creado por expertos</div>
-      <div class="benefit">🔥 Sistema que recompensa tu esfuerzo y tu red</div>
-      <div class="benefit">🚀 Si estás aquí, es porque quieres un cambio</div>
-    </div>
-  </section>
-
-<section>
-  <p>En un mundo donde cada vez más personas buscan formas reales de generar ingresos desde casa, <strong>OMPULSE</strong> nace como mucho más que una revista. Es una oportunidad de crecimiento personal, de negocio y de comunidad.</p>
-
-  <p><strong>OMPULSE</strong> es la revista Nº1 de Negocios Digitales, pensada tanto para quienes están dando sus primeros pasos online, como para pequeños comercios o profesionales que desean exponerse, crear su presencia digital o empezar a vender por internet.</p>
-
-  <p>Ya seas emprendedor, influencer, coach, artesano, o tengas una tienda física... esta revista te guía y te inspira a avanzar en el mundo digital.</p>
-
-  <h3>¿Qué es el marketing de afiliados?</h3>
-  <p>Es un modelo de negocio real, legal y probado, utilizado por grandes marcas.</p>
-
-  <p>En lugar de invertir millones en publicidad tradicional, estas empresas prefieren pagar comisiones a personas reales por recomendar sus productos. <strong>OMPULSE</strong> sigue este mismo principio, pero 100% digital, sin stock y sin complicaciones.</p>
-
-  <p>Cuando tú te suscribes, accedes no solo al contenido mensual, sino también a tu propio enlace de afiliado, que puedes compartir con otras personas. Por cada venta, ganas una comisión, y además también ganas por las ventas que hagan tus afiliados.</p>
-
-  <p>Este modelo no está pensado para vender algo y que nadie gane. Está diseñado para que realmente puedas tener un negocio rentable y sostenible como afiliado/a.</p>
-
-  <h3>En resumen:</h3>
-  <ul>
-    <li>✅ Ganas desde la primera venta.</li>
-    <li>🤝 Ayudas a otros a crecer.</li>
-    <li>📚 Aprendes sobre negocios digitales de forma real.</li>
-    <li>📈 Construyes una fuente de ingresos que puede escalar.</li>
-  </ul>
-</section>
-
-  <section>
-    <h2>Suscríbete</h2>
-    <p class="price">148€ / mes</p>
-    <p>Una única suscripción, todo lo que necesitas:</p>
-    <ul>
-      <li>✅ Acceso a la revista digital mensual</li>
-      <li>✅ Herramientas para vender y generar ingresos</li>
-      <li>✅ Comisión directa recurrente de 50€ por cada referido</li>
-      <li>✅ Comisión indirecta recurrente de 10€ por cada referido de tus referidos</li>
- <li>✅ Comisión indirecta recurrente de 5€ por el equipo de tus referidos</li>
-    </ul>
-    <p><strong>Cubres el coste con solo 3 personas.</strong> Todo lo demás, es ganancia.</p>
-    <p>Convierte tu red de contactos en tu fuente de ingresos, sin invertir más que tu suscripción mensual.</p>
-    <p><em>💰 Comisión mensual por afiliado mientras mantenga su suscripción activa.</em></p>
-    <a class="cta-button" href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" target="_blank" rel="noopener noreferrer">Únete ahora AQUÍ</a>
-  </section>
-
-  <section>
-    <h2>Testimonios</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <div class="testimonial-name">Luis M. Avila</div>
-        <div class="testimonial-text">El que no gana dinero es porque no quiere, desde mi sofá, hablando con los colegas, le dedico cada día unas 4h a moverlo entre contactos, amigos, conocidos, el del super, el peluquero y les dedico un rato a enseñarles como crecer, y que con solo 3 personas todo lo demas es beneficio. En 3 semanas somos más de 40 personas en mi red.</div>
-      </div>
-      <div class="testimonial">
-        <div class="testimonial-name">Miguel Díaz</div>
-        <div class="testimonial-text">Desconfiaba un poco al principio. Lo compartí con mi grupo de amigos y esto es potente, ya he ganado más de 1500€, además el contenido de la revista me está ayudando. Le doy un 10.</div>
-      </div>
-      <div class="testimonial">
-        <div class="testimonial-name">Leonardo Acosta</div>
-        <div class="testimonial-text">El contenido tiene muchísimo valor. No solo estoy ganando dinero, también estoy aprendiendo sobre automatización y marketing digital de verdad. ¡Vale cada euro!</div>
-      </div>
-      <div class="testimonial">
-        <div class="testimonial-name">Nerea Ruiz</div>
-        <div class="testimonial-text">Ya he generado mis primeros ingresos con solo 4 referidos, y lo mejor es que se nota que el contenido es profesional y útil. Lo recomiendo a quien quiera empezar algo serio sin complicarse.</div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Ompulse. Todos los derechos reservados.
-  </footer>
-
-  <a href="https://buy.stripe.com/00w00kc9IdEo62XcbjbjW00" class="floating-cta" target="_blank">🔥 Únete</a>
-
-  <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-
-  <div class="cookie-banner" id="cookieBanner">
-    <div>
-      <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="legal.html" target="_blank">política de cookies</a>.</label>
-    </div>
-    <button onclick="aceptarCookies()">Aceptar</button>
-  </div>
+  <h1>Resultados diarios del robot de trading</h1>
+  <div id="graficoRobot"></div>
 
   <script>
-   function calcular() {
-  const directos = parseInt(document.getElementById('directos').value);
-  const referidos = parseInt(document.getElementById('referidos').value);
-  const terceros = parseInt(document.getElementById('terceros').value);
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-  document.getElementById('valDirectos').innerText = directos;
-  document.getElementById('valReferidos').innerText = referidos;
-  document.getElementById('valTerceros').innerText = terceros;
+    function drawChart() {
+      var queryString = encodeURIComponent('SELECT A, B');
+      var dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
+      
+      fetch(dataSourceUrl)
+        .then(response => response.text())
+        .then(csvText => {
+          const rows = csvText.split('\n').slice(1).map(r => r.split(',').map((v,i) => i===0 ? v : parseFloat(v)));
+          const data = new google.visualization.DataTable();
+          data.addColumn('string', 'Fecha');
+          data.addColumn('number', 'Resultado');
+          data.addRows(rows);
 
-  const ganancia = (directos * 50) + 
-                   (directos * referidos * 10) + 
-                   (directos * referidos * terceros * 5);
+          var options = {
+            title: 'Resultados diarios del robot de trading',
+            curveType: 'function',
+            legend: { position: 'bottom', textStyle: {color:'#FFD700', fontSize:14} },
+            height: 400,
+            backgroundColor: '#111',
+            colors: ['#FFD700'],
+            hAxis: { textStyle: {color: '#FFD700'}, gridlines: {color:'#333'} },
+            vAxis: { textStyle: {color: '#FFD700'}, gridlines: {color:'#333'} },
+            chartArea: {width:'85%', height:'70%'}
+          };
 
-  document.getElementById('resultado').innerText = ganancia + '€';
-}
-calcular();
-
-
-    function aceptarCookies() {
-      const check = document.getElementById('cookieConsentCheck');
-      if (check.checked) {
-        document.getElementById('cookieBanner').classList.add('hidden');
-        localStorage.setItem('cookiesAceptadas', 'true');
-      } else {
-        alert("Debes aceptar la política de cookies para continuar.");
-      }
+          var chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
+          chart.draw(data, options);
+        });
     }
-
-    window.onload = function () {
-      if (localStorage.getItem('cookiesAceptadas') === 'true') {
-        document.getElementById('cookieBanner').classList.add('hidden');
-      }
-    };
   </script>
-
-<script>
-  fetch('https://api.counterapi.dev/v2/workspaces/311/counters/visitas-descubre', {
-    method: 'POST'
-  });
-</script>
-
-
-<script src="https://cdn.firstpromoter.com/payment-links.js" async></script>
 </body>
-</html> 
+</html>
