@@ -35,22 +35,25 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  const queryString = encodeURIComponent('SELECT A,B');
   const dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
 
   fetch(dataSourceUrl)
     .then(response => response.text())
     .then(csvText => {
       const rows = csvText.trim().split('\n').map(r => r.split(','));
-      const dataArray = [['Fecha', 'Ganancia']];
-      for(let i=1; i<rows.length; i++){
-        const dateParts = rows[i][0].split('-'); // YYYY-MM-DD
-        const dateObj = new Date(dateParts[0], dateParts[1]-1, dateParts[2]);
-        const value = parseFloat(rows[i][1]);
-        if(!isNaN(value)) dataArray.push([dateObj, value]);
-      }
+      // Crear DataTable manualmente para forzar tipos
+      const data = new google.visualization.DataTable();
+      data.addColumn('date', 'Fecha');
+      data.addColumn('number', 'Ganancia');
 
-      const data = google.visualization.arrayToDataTable(dataArray);
+      for (let i = 1; i < rows.length; i++) { // saltar encabezado
+        const dateParts = rows[i][0].split('-'); // YYYY-MM-DD
+        const fecha = new Date(parseInt(dateParts[0]), parseInt(dateParts[1])-1, parseInt(dateParts[2]));
+        const valor = parseFloat(rows[i][1]);
+        if (!isNaN(valor)) {
+          data.addRow([fecha, valor]);
+        }
+      }
 
       const options = {
         title: 'Resultados diarios del robot de trading',
@@ -75,3 +78,4 @@ function drawChart() {
 
 </body>
 </html>
+
