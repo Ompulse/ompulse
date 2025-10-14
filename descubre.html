@@ -1,84 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resultados Robot OMPULSE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    header {
-      width: 100%;
-      text-align: center;
-      padding: 2rem 1rem;
-      background: linear-gradient(to right, #ff0000, #000);
-    }
-    header h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(to right, #FFD700, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
-    }
-    #graficoRobot {
-      width: 95%;
-      max-width: 900px;
-      height: 400px;
-      margin: 2rem auto;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultados del Robot - OMPULSE</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  body {
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  #graficoRobot {
+    width: 90%;
+    max-width: 900px;
+    height: 500px;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Resultados del Robot de Trading OMPULSE</h1>
-    <p>Visualiza la evolución diaria de beneficios directamente desde nuestro Sheet</p>
-  </header>
+<h1>Resultados diarios del robot de trading</h1>
+<div id="graficoRobot"></div>
 
-  <div id="graficoRobot"></div>
+<script>
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(cargarDatos);
 
-  <script>
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+  function cargarDatos() {
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
+    
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      complete: function(results) {
+        const dataArray = [['Fecha', 'Resultado']];
+        results.data.forEach(row => {
+          if (row.Fecha && row.Resultado !== undefined) {
+            dataArray.push([row.Fecha, row.Resultado]);
+          }
+        });
 
-    function drawChart() {
-      var dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/gviz/tq?sheet=Sheet1&tq=SELECT+A,+B';
+        const data = google.visualization.arrayToDataTable(dataArray);
 
-      var query = new google.visualization.Query(dataSourceUrl);
-      query.send(function(response) {
-        if (response.isError()) {
-          console.error('Error de Google Charts: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-          return;
-        }
-
-        var data = response.getDataTable();
-        var options = {
+        const options = {
           title: 'Resultados diarios del robot de trading',
           curveType: 'function',
-          legend: { position: 'bottom', textStyle: { color: '#fff' } },
-          height: 400,
+          legend: { position: 'bottom' },
+          height: 500,
           backgroundColor: 'transparent',
           colors: ['#FFD700'],
-          hAxis: { title: 'Fecha', textStyle: {color: '#fff'}, titleTextStyle: {color: '#FFD700'} },
-          vAxis: { title: 'Beneficio €', textStyle: {color: '#fff'}, titleTextStyle: {color: '#FFD700'} },
-          chartArea: { left: 80, right: 30, top: 50, bottom: 80 }
+          hAxis: { title: 'Fecha' },
+          vAxis: { title: 'Resultado (€)' },
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
+        const chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
         chart.draw(data, options);
-      });
-    }
-  </script>
+      }
+    });
+  }
+</script>
 </body>
 </html>
-
