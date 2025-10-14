@@ -48,9 +48,13 @@
       dynamicTyping: true,
       complete: function(results) {
         const dataArray = [['Fecha', 'Resultado']];
+        
         results.data.forEach(row => {
           if (row.Fecha && row.Resultado !== undefined) {
-            dataArray.push([row.Fecha, row.Resultado]);
+            // Convertir la fecha de texto a objeto Date
+            const partes = row.Fecha.split('-'); // asumiendo formato YYYY-MM-DD
+            const fecha = new Date(partes[0], partes[1]-1, partes[2]);
+            dataArray.push([fecha, row.Resultado]);
           }
         });
 
@@ -63,7 +67,7 @@
           height: 500,
           backgroundColor: 'transparent',
           colors: ['#FFD700'],
-          hAxis: { title: 'Fecha' },
+          hAxis: { title: 'Fecha', format: 'dd/MM/yyyy' },
           vAxis: { title: 'Resultado (€)' },
         };
 
@@ -75,3 +79,4 @@
 </script>
 </body>
 </html>
+
