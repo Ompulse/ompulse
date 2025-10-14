@@ -3,80 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resultados del Robot - OMPULSE</title>
+<title>Resultados Robot - OMPULSE</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
   body {
     background: #000;
     color: #fff;
     font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 2rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  h1 {
-    background: linear-gradient(to right, #FFD700, #FFA500);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
   }
   #graficoRobot {
-    width: 90%;
+    width: 100%;
     max-width: 900px;
     height: 500px;
+    background: #111;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
+    padding: 1rem;
   }
 </style>
 </head>
 <body>
-<h1>Resultados diarios del robot de trading</h1>
+
 <div id="graficoRobot"></div>
 
 <script>
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(cargarDatos);
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-  function cargarDatos() {
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
-    
-    Papa.parse(csvUrl, {
-      download: true,
-      header: true,
-      dynamicTyping: true,
-      complete: function(results) {
-        const dataArray = [['Fecha', 'Resultado']];
-        
-        results.data.forEach(row => {
-          if (row.Fecha && row.Resultado !== undefined) {
-            // Convertir la fecha de texto a objeto Date
-            const partes = row.Fecha.split('-'); // asumiendo formato YYYY-MM-DD
-            const fecha = new Date(partes[0], partes[1]-1, partes[2]);
-            dataArray.push([fecha, row.Resultado]);
-          }
-        });
+function drawChart() {
+  const queryString = encodeURIComponent('SELECT A,B');
+  const dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
 
-        const data = google.visualization.arrayToDataTable(dataArray);
-
-        const options = {
-          title: 'Resultados diarios del robot de trading',
-          curveType: 'function',
-          legend: { position: 'bottom' },
-          height: 500,
-          backgroundColor: 'transparent',
-          colors: ['#FFD700'],
-          hAxis: { title: 'Fecha', format: 'dd/MM/yyyy' },
-          vAxis: { title: 'Resultado (€)' },
-        };
-
-        const chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
-        chart.draw(data, options);
+  fetch(dataSourceUrl)
+    .then(response => response.text())
+    .then(csvText => {
+      const rows = csvText.trim().split('\n').map(r => r.split(','));
+      const dataArray = [['Fecha', 'Ganancia']];
+      for(let i=1; i<rows.length; i++){
+        const dateParts = rows[i][0].split('-'); // YYYY-MM-DD
+        const dateObj = new Date(dateParts[0], dateParts[1]-1, dateParts[2]);
+        const value = parseFloat(rows[i][1]);
+        if(!isNaN(value)) dataArray.push([dateObj, value]);
       }
+
+      const data = google.visualization.arrayToDataTable(dataArray);
+
+      const options = {
+        title: 'Resultados diarios del robot de trading',
+        curveType: 'function',
+        legend: { position: 'bottom', textStyle: {color:'#FFD700'} },
+        height: 500,
+        backgroundColor: 'transparent',
+        colors: ['#FFD700'],
+        hAxis: { textStyle: {color:'#FFD700'}, gridlines: {color:'#444'} },
+        vAxis: { textStyle: {color:'#FFD700'}, gridlines: {color:'#444'} },
+      };
+
+      const chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
+      chart.draw(data, options);
+    })
+    .catch(err => {
+      console.error('Error cargando CSV:', err);
+      document.getElementById('graficoRobot').innerText = 'No se pudo cargar el gráfico.';
     });
-  }
+}
 </script>
+
 </body>
 </html>
-
