@@ -1,81 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resultados Robot - OMPULSE</title>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<style>
-  body {
-    background: #000;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem;
-  }
-  #graficoRobot {
-    width: 100%;
-    max-width: 900px;
-    height: 500px;
-    background: #111;
-    border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(255,0,0,0.5);
-    padding: 1rem;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=index.html">
+  <title>Redirigiendo...</title>
+  <script>
+    // En caso de que el meta refresh falle
+    window.location.replace("index.html");
+  </script>
 </head>
 <body>
-
-<div id="graficoRobot"></div>
-
-<script>
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-  const dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
-
-  fetch(dataSourceUrl)
-    .then(response => response.text())
-    .then(csvText => {
-      const rows = csvText.trim().split('\n').map(r => r.split(','));
-      // Crear DataTable manualmente para forzar tipos
-      const data = new google.visualization.DataTable();
-      data.addColumn('date', 'Fecha');
-      data.addColumn('number', 'Ganancia');
-
-      for (let i = 1; i < rows.length; i++) { // saltar encabezado
-        const dateParts = rows[i][0].split('-'); // YYYY-MM-DD
-        const fecha = new Date(parseInt(dateParts[0]), parseInt(dateParts[1])-1, parseInt(dateParts[2]));
-        const valor = parseFloat(rows[i][1]);
-        if (!isNaN(valor)) {
-          data.addRow([fecha, valor]);
-        }
-      }
-
-      const options = {
-        title: 'Resultados diarios del robot de trading',
-        curveType: 'function',
-        legend: { position: 'bottom', textStyle: {color:'#FFD700'} },
-        height: 500,
-        backgroundColor: 'transparent',
-        colors: ['#FFD700'],
-        hAxis: { textStyle: {color:'#FFD700'}, gridlines: {color:'#444'} },
-        vAxis: { textStyle: {color:'#FFD700'}, gridlines: {color:'#444'} },
-      };
-
-      const chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
-      chart.draw(data, options);
-    })
-    .catch(err => {
-      console.error('Error cargando CSV:', err);
-      document.getElementById('graficoRobot').innerText = 'No se pudo cargar el gráfico.';
-    });
-}
-</script>
-
+  Si no redirige automáticamente, haz clic <a href="index.html">aquí</a>.
 </body>
 </html>
-
