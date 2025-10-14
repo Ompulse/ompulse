@@ -1,77 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gráfico Robot de Trading - OMPULSE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    h1 {
-      font-size: 2rem;
-      background: linear-gradient(to right, #FFD700, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 2rem;
-    }
-    #graficoRobot {
-      width: 100%;
-      max-width: 800px;
-      height: 400px;
-      background-color: #111;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(255,0,0,0.5);
-      padding: 1rem;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resultados Robot OMPULSE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #graficoRobot {
+    max-width: 900px;
+    margin: auto;
+  }
+</style>
 </head>
 <body>
-  <h1>Resultados diarios del robot de trading</h1>
-  <div id="graficoRobot"></div>
 
-  <script>
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+<h1>Resultados diarios del robot de trading</h1>
+<div id="graficoRobot"></div>
 
-    function drawChart() {
-      var queryString = encodeURIComponent('SELECT A, B');
-      var dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f/pub?gid=0&single=true&output=csv';
-      
-      fetch(dataSourceUrl)
-        .then(response => response.text())
-        .then(csvText => {
-          const rows = csvText.split('\n').slice(1).map(r => r.split(',').map((v,i) => i===0 ? v : parseFloat(v)));
-          const data = new google.visualization.DataTable();
-          data.addColumn('string', 'Fecha');
-          data.addColumn('number', 'Resultado');
-          data.addRows(rows);
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-          var options = {
-            title: 'Resultados diarios del robot de trading',
-            curveType: 'function',
-            legend: { position: 'bottom', textStyle: {color:'#FFD700', fontSize:14} },
-            height: 400,
-            backgroundColor: '#111',
-            colors: ['#FFD700'],
-            hAxis: { textStyle: {color: '#FFD700'}, gridlines: {color:'#333'} },
-            vAxis: { textStyle: {color: '#FFD700'}, gridlines: {color:'#333'} },
-            chartArea: {width:'85%', height:'70%'}
-          };
+function drawChart() {
+  // ID del Sheet publicado
+  var sheetId = '2PACX-1vQis1cGNIm9CjUFMGTk51MknoBOTbLGTBnGTuSXKyE5gKaRSFIFnukt835fKLAjsCvnwb2g9J3pDf8f';
+  var queryString = encodeURIComponent('SELECT A, B'); // columnas Fecha y Resultado
+  var dataSourceUrl = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?sheet=Sheet1&tq=' + queryString;
 
-          var chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
-          chart.draw(data, options);
-        });
+  var query = new google.visualization.Query(dataSourceUrl);
+  query.send(function(response) {
+    if (response.isError()) {
+      console.error('Error en la consulta: ' + response.getMessage());
+      return;
     }
-  </script>
+    var data = response.getDataTable();
+
+    var options = {
+      title: 'Resultados diarios del robot de trading',
+      curveType: 'function',
+      legend: { position: 'bottom' },
+      height: 400,
+      backgroundColor: 'transparent',
+      colors: ['#FFD700'],
+      hAxis: { title: 'Fecha', textStyle: {color: '#fff'}, titleTextStyle: {color: '#FFD700'} },
+      vAxis: { title: 'Beneficio €', textStyle: {color: '#fff'}, titleTextStyle: {color: '#FFD700'} },
+      legendTextStyle: { color: '#fff' },
+      chartArea: { left: 80, right: 30, top: 50, bottom: 80 }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('graficoRobot'));
+    chart.draw(data, options);
+  });
+}
+</script>
+
 </body>
 </html>
