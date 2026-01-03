@@ -24,42 +24,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="icon" type="image/png" href="h%20copia.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <!-- SCRIPT DE SEGUIMIENTO DE FIRSTPROMOTER -->
- <script>(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
-fpr("init", {cid:"fzvofhq1"}); 
-fpr("click");
-</script>
-<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
-<script>
-    function getFPTid() {
-      return window.FPROM && window.FPROM.data.tid;
-    }
-    function initializeFPRPaymentLinks() {
-      console.log("initialized fpr on payment links");
-      setTimeout(function () {
-        var stripePaymentLinks = document.querySelectorAll(
-          'a[href^="https://buy.stripe.com/"]'
-        );
-        stripePaymentLinks.forEach(function (link) {
-          // Get current url
-          var oldStripePaymentUrl = link.getAttribute("href"); 
-          // Get the tid
-          var tid = getFPTid();
-          if (tid) {
-            var url = new URL(oldStripePaymentUrl);
-            url.searchParams.set('client_reference_id', tid);
-            link.setAttribute("href", url.toString());
-          }
-        });
-      }, 800);
-    }
-    if (window.attachEvent) {
-      window.attachEvent("onload", initializeFPRPaymentLinks);
-    } else {
-      window.addEventListener("load", initializeFPRPaymentLinks, false);
-    }
-  </script>
-
 <style>
   body {
     font-family: 'Inter', sans-serif;
@@ -69,28 +33,28 @@ fpr("click");
     color: #fff;
   }
   header {
-    position: relative; /* para que el texto y la imagen se posicionen correctamente */
+    position: relative;
     background: linear-gradient(to bottom, #ff0000, #000);
     color: white;
     padding: 2rem;
     text-align: center;
-    overflow: hidden; /* para evitar que la imagen sobresalga */
-    min-height: 320px; /* altura mínima para que el header no se quede pequeño */
+    overflow: hidden;
+    min-height: 320px;
   }
   .header-background-image {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw; /* ancho total de la ventana */
+    width: 100vw;
     max-width: 100%;
-    height: auto; /* para mantener la proporción */
+    height: auto;
     opacity: 0.4;
     z-index: 0;
-    object-fit: cover; /* para que la imagen rellene el área sin deformarse */
-    pointer-events: none; /* que la imagen no interfiera con clicks */
+    object-fit: cover;
+    pointer-events: none;
   }
   .header-text {
-    position: relative; /* para que esté encima de la imagen */
+    position: relative;
     z-index: 2;
     max-width: 90%;
     margin: 0 auto;
@@ -325,8 +289,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-
-
 <section>
   <h2>¿Qué es?</h2>
   <p>OMPULSE es la revista Nº1 de negocios digitales que te permite aprender, crecer y generar ingresos desde el primer momento. Con contenido de valor real y un sistema de recomendación justo y potente.</p>
@@ -335,7 +297,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>Además, recibirás acceso exclusivo a nuestro <strong>robot de trading</strong> que te ayuda a generar ingresos automáticos incluso sin conocimiento, y a la <strong>formación en marketing de afiliados</strong>, para que puedas construir y escalar tu red de manera efectiva.</p>
   <p>Aprende, crece y ayuda a otros a cambiar su vida. Y sí, puedes hacerlo <strong>trabajando desde casa</strong>, desde tu móvil, desde donde quieras.</p>
 </section>
-
 
   <section>
     <h2>¿Cuánto podrías ganar?</h2>
@@ -352,7 +313,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <label for="terceros">Promedio de personas que recomendarán el equipo de tus referidos</label>
 <input type="range" id="terceros" name="terceros" min="0" max="50" value="2" oninput="calcular()">
 <span id="valTerceros">5</span>
-
 
       <div class="result">Ganancia mensual estimada: <span id="resultado">800€</span></div>
     </div>
@@ -409,7 +369,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
 </section>
 
-
   <section>
     <h2>Suscríbete</h2>
     <p class="price">148€ / mes</p>
@@ -421,13 +380,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li>✅ Herramientas para vender y generar ingresos</li>
       <li>✅ Comisión directa recurrente de 50€ por cada referido</li>
       <li>✅ Comisión indirecta recurrente de 10€ por cada referido de tus referidos</li>
- <li>✅ Comisión indirecta recurrente de 5€ por el equipo de tus referidos</li>
+      <li>✅ Comisión indirecta recurrente de 5€ por el equipo de tus referidos</li>
     </ul>
     <p><strong>Con solo 3 personas subres el coste.</strong> Todo lo demás, es ganancia.</p>
     <p>Convierte tu red de contactos en tu fuente de ingresos, sin invertir más que tu suscripción mensual.</p>
     <p><em>💰 Comisión mensual por afiliado mientras mantenga su suscripción activa.</em></p>
     <a class="cta-button" href="https://go.hotmart.com/A103302883F" target="_blank" rel="noopener noreferrer">Únete ahora AQUÍ</a>
-
   </section>
 
   <section>
@@ -458,18 +416,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a href="https://go.hotmart.com/A103302883F" class="floating-cta" target="_blank">🔥 Únete</a>
 
+<button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
-  <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-
-  <div class="cookie-banner" id="cookieBanner">
-    <div>
-      <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="legal.html" target="_blank">política de cookies</a>.</label>
-    </div>
-    <button onclick="aceptarCookies()">Aceptar</button>
+<div class="cookie-banner" id="cookieBanner">
+  <div>
+    <label><input type="checkbox" id="cookieConsentCheck"> He leído y acepto la <a href="legal.html" target="_blank">política de cookies</a>.</label>
   </div>
+  <button onclick="aceptarCookies()">Aceptar</button>
+</div>
 
-  <script>
-   function calcular() {
+<script>
+function calcular() {
   const directos = parseInt(document.getElementById('directos').value);
   const referidos = parseInt(document.getElementById('referidos').value);
   const terceros = parseInt(document.getElementById('terceros').value);
@@ -486,23 +443,99 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 calcular();
 
+function aceptarCookies() {
+  const check = document.getElementById('cookieConsentCheck');
+  if (check.checked) {
+    document.getElementById('cookieBanner').classList.add('hidden');
+    localStorage.setItem('cookiesAceptadas', 'true');
+  } else {
+    alert("Debes aceptar la política de cookies para continuar.");
+  }
+}
 
-    function aceptarCookies() {
-      const check = document.getElementById('cookieConsentCheck');
-      if (check.checked) {
-        document.getElementById('cookieBanner').classList.add('hidden');
-        localStorage.setItem('cookiesAceptadas', 'true');
-      } else {
-        alert("Debes aceptar la política de cookies para continuar.");
-      }
+window.onload = function () {
+  if (localStorage.getItem('cookiesAceptadas') === 'true') {
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+};
+</script>
+
+<script>
+// Script de seguimiento para Hotmart
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener el parámetro 'ref' de la URL
+    function getHotmartRef() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('ref');
     }
-
-    window.onload = function () {
-      if (localStorage.getItem('cookiesAceptadas') === 'true') {
-        document.getElementById('cookieBanner').classList.add('hidden');
-      }
-    };
-  </script>
+    
+    // Guardar el ref en localStorage (persistencia 30 días)
+    function saveHotmartRef(ref) {
+        if (ref) {
+            localStorage.setItem('hotmart_ref', ref);
+            localStorage.setItem('hotmart_ref_timestamp', Date.now());
+        }
+    }
+    
+    // Modificar todos los enlaces de Hotmart
+    function modifyHotmartLinks() {
+        const hotmartLinks = document.querySelectorAll('a[href*="hotmart.com"]');
+        let currentRef = getHotmartRef();
+        
+        // Si no hay ref en URL, buscar en localStorage
+        if (!currentRef) {
+            currentRef = localStorage.getItem('hotmart_ref');
+        } else {
+            // Si hay ref en URL, guardarlo
+            saveHotmartRef(currentRef);
+        }
+        
+        if (currentRef) {
+            hotmartLinks.forEach(function(link) {
+                try {
+                    const url = new URL(link.href);
+                    
+                    // Solo modificar si no tiene ya un parámetro ref
+                    if (!url.searchParams.has('ref')) {
+                        url.searchParams.set('ref', currentRef);
+                        link.href = url.toString();
+                    }
+                } catch (e) {
+                    console.error('Error modificando enlace:', e);
+                }
+            });
+        }
+    }
+    
+    // Limpiar localStorage después de 30 días
+    const timestamp = localStorage.getItem('hotmart_ref_timestamp');
+    if (timestamp && (Date.now() - timestamp > 30 * 24 * 60 * 60 * 1000)) {
+        localStorage.removeItem('hotmart_ref');
+        localStorage.removeItem('hotmart_ref_timestamp');
+    }
+    
+    // Ejecutar cuando la página cargue
+    modifyHotmartLinks();
+    
+    // También modificar si se hace clic (por si se añaden enlaces dinámicamente)
+    document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' && e.target.href.includes('hotmart.com')) {
+            const currentRef = getHotmartRef() || localStorage.getItem('hotmart_ref');
+            if (currentRef) {
+                try {
+                    const url = new URL(e.target.href);
+                    if (!url.searchParams.has('ref')) {
+                        url.searchParams.set('ref', currentRef);
+                        e.target.href = url.toString();
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        }
+    });
+});
+</script>
 
 <script>
   fetch('https://api.counterapi.dev/v2/workspaces/311/counters/visitas-descubre', {
@@ -510,7 +543,5 @@ calcular();
   });
 </script>
 
-
-
 </body>
-</html> 
+</html>
