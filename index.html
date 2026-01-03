@@ -550,23 +550,22 @@ window.onload = function () {
 </script>
 
 <!-- ============================================ -->
-<!-- SECCIÓN: SCRIPT SEGUIMIENTO HOTMART DEFINITIVO -->
+<!-- SECCIÓN: SCRIPT SEGUIMIENTO HOTMART          -->
 <!-- ============================================ -->
 <script>
-// SCRIPT DEFINITIVO SEGUIMIENTO HOTMART
-// Este script garantiza que TODOS los enlaces a Hotmart tengan el parámetro ?ref=CODIGO
+// SCRIPT DEFINITIVO SEGUIMIENTO HOTMART - VERSIÓN CORREGIDA
 (function() {
     'use strict';
     
     console.log('🚀 HOTMART TRACKER INICIADO');
     
-    // 1. OBTENER CÓDIGO AFILIADO (de URL o localStorage)
+    // 1. OBTENER CÓDIGO AFILIADO
     function obtenerCodigoAfiliado() {
         // Primero de la URL
         const urlParams = new URLSearchParams(window.location.search);
         let codigo = urlParams.get('ref');
         
-        // Validar que sea un código válido (empieza con letra y tiene al menos 10 chars)
+        // Validar que sea un código válido
         if (codigo && /^[A-Za-z][A-Za-z0-9]{9,}$/.test(codigo)) {
             console.log('✅ Código encontrado en URL:', codigo);
             localStorage.setItem('hotmart_afiliado', codigo);
@@ -585,7 +584,7 @@ window.onload = function () {
         return null;
     }
     
-    // 2. MODIFICAR UN ENLACE ESPECÍFICO
+    // 2. MODIFICAR UN ENLACE ESPECÍFICO (VERSIÓN CORREGIDA)
     function modificarEnlaceHotmart(enlace) {
         const codigo = obtenerCodigoAfiliado();
         if (!codigo) return false;
@@ -604,24 +603,16 @@ window.onload = function () {
         // Actualizar el enlace
         enlace.href = nuevaURL;
         
-        // También actualizar el atributo onclick si existe
-        if (enlace.onclick) {
-            const oldOnclick = enlace.onclick.toString();
-            if (!oldOnclick.includes('ref=')) {
-                enlace.setAttribute('onclick', oldOnclick.replace(/href=['"][^'"]*['"]/, 'href="' + nuevaURL + '"'));
-            }
-        }
-        
-        console.log('🔗 Enlace modificado:', { original: urlOriginal, nuevo: nuevaURL });
+        console.log('🔗 Enlace modificado:', urlOriginal, '→', nuevaURL);
         return true;
     }
     
-    // 3. MODIFICAR TODOS LOS ENLACES HOTMART EN LA PÁGINA
+    // 3. MODIFICAR TODOS LOS ENLACES HOTMART
     function modificarTodosEnlacesHotmart() {
         const codigo = obtenerCodigoAfiliado();
         if (!codigo) {
             console.log('⏸️ No hay código, no se modifican enlaces');
-            return;
+            return 0;
         }
         
         // Buscar TODOS los enlaces que contengan hotmart.com
@@ -636,6 +627,7 @@ window.onload = function () {
         });
         
         console.log(`✅ ${modificados}/${enlaces.length} enlaces modificados`);
+        return modificados;
     }
     
     // 4. INTERCEPTAR CLICS EN ENLACES HOTMART
@@ -665,9 +657,15 @@ window.onload = function () {
                 // Actualizar el href inmediatamente
                 elemento.href = urlConRef;
                 
-                console.log('🎯 Clic interceptado y enlace actualizado:', urlConRef);
+                console.log('🎯 Clic interceptado. URL actualizada a:', urlConRef);
+                
+                // Opcional: abrir en nueva pestaña si es target="_blank"
+                if (elemento.target === '_blank') {
+                    e.preventDefault();
+                    window.open(urlConRef, '_blank');
+                }
             }
-        }, true); // Usar captura para interceptar antes
+        }, true);
     }
     
     // 5. EJECUTAR CUANDO SE CARGA LA PÁGINA
@@ -675,41 +673,100 @@ window.onload = function () {
         console.log('📄 DOM cargado, aplicando seguimiento Hotmart...');
         
         // Modificar enlaces inmediatamente
-        modificarTodosEnlacesHotmart();
+        const modificados = modificarTodosEnlacesHotmart();
         
         // Configurar interceptor de clics
         interceptarClicsHotmart();
         
-        // Verificar periódicamente por enlaces nuevos (cada 2 segundos)
-        setInterval(modificarTodosEnlacesHotmart, 2000);
+        // Verificar periódicamente por enlaces nuevos (cada 3 segundos)
+        setInterval(() => {
+            const nuevosModificados = modificarTodosEnlacesHotmart();
+            if (nuevosModificados > 0) {
+                console.log('🔄 Se encontraron y modificaron nuevos enlaces');
+            }
+        }, 3000);
         
-        // Función de depuración
+        // Función de depuración MEJORADA
         window.verificarHotmart = function() {
             const codigo = obtenerCodigoAfiliado();
             const enlaces = document.querySelectorAll('a[href*="hotmart.com"]');
             
             console.log('=== VERIFICACIÓN HOTMART ===');
             console.log('Código afiliado:', codigo);
+            console.log('URL actual:', window.location.href);
             console.log('Total enlaces Hotmart:', enlaces.length);
             
+            if (enlaces.length === 0) {
+                console.log('❌ ERROR: No se encontraron enlaces Hotmart');
+                alert('❌ ERROR: No se encontraron enlaces Hotmart en la página');
+                return;
+            }
+            
             enlaces.forEach((enlace, i) => {
-                console.log(`Enlace ${i + 1}:`);
-                console.log('  URL:', enlace.href);
-                console.log('  Tiene ref?:', enlace.href.includes('ref=') ? '✅ SÍ' : '❌ NO');
-                console.log('  Texto:', enlace.textContent.substring(0, 50) + '...');
+                const tieneRef = enlace.href.includes('ref=');
+                console.log(`\nEnlace ${i + 1}:`);
+                console.log('  URL completa:', enlace.href);
+                console.log('  Tiene ref?:', tieneRef ? '✅ SÍ' : '❌ NO');
+                console.log('  Texto visible:', enlace.textContent.trim().substring(0, 50) + '...');
+                console.log('  Clases:', enlace.className);
+                console.log('  Target:', enlace.target);
+                
+                // Mostrar si tiene el código correcto
+                if (tieneRef && codigo) {
+                    const refEnURL = new URL(enlace.href).searchParams.get('ref');
+                    console.log('  Código en enlace:', refEnURL);
+                    console.log('  Coincide con código actual?:', refEnURL === codigo ? '✅ SÍ' : '❌ NO');
+                }
             });
             
+            // Test práctico: hacer clic programático en el primer enlace
+            if (enlaces.length > 0) {
+                console.log('\n=== TEST PRÁCTICO ===');
+                console.log('Para probar:');
+                console.log('1. Haz clic derecho en el botón "Únete ahora"');
+                console.log('2. Selecciona "Copiar dirección del enlace"');
+                console.log('3. Pégalo aquí para ver si tiene ?ref=' + codigo);
+                console.log('4. O haz clic normal y fíjate en la URL final');
+            }
+            
             if (codigo) {
-                alert(`✅ Código: ${codigo}\n🔗 Enlaces: ${enlaces.length}\nVer consola para detalles.`);
+                alert(`VERIFICACIÓN:\n\nCódigo: ${codigo}\nEnlaces: ${enlaces.length}\n\n✅ Ahora haz clic en "Únete ahora" y verifica que la URL tenga: ?ref=${codigo}\n\nVer consola para detalles completos.`);
             } else {
-                alert('❌ No hay código de afiliado');
+                alert('❌ No hay código de afiliado detectado');
             }
         };
         
+        // Función para FORZAR la modificación
+        window.forzarModificacionHotmart = function() {
+            console.log('🔄 FORZANDO modificación de enlaces...');
+            const enlaces = document.querySelectorAll('a[href*="hotmart.com"]');
+            
+            enlaces.forEach(enlace => {
+                // Resetear eliminando cualquier ref existente
+                let url = enlace.href;
+                if (url.includes('ref=')) {
+                    // Eliminar parámetro ref
+                    url = url.replace(/[?&]ref=[^&]*/, '');
+                    if (url.includes('?&')) url = url.replace('?&', '?');
+                    if (url.endsWith('?')) url = url.slice(0, -1);
+                    if (url.endsWith('&')) url = url.slice(0, -1);
+                    enlace.href = url;
+                }
+            });
+            
+            // Volver a modificar
+            setTimeout(() => {
+                const modificados = modificarTodosEnlacesHotmart();
+                console.log(`🔄 Forzada modificación: ${modificados} enlaces actualizados`);
+                verificarHotmart();
+            }, 100);
+        };
+        
         console.log('✨ Hotmart tracker configurado. Usa verificarHotmart() para probar.');
+        console.log('✨ También puedes usar forzarModificacionHotmart() si hay problemas.');
     });
     
-    // 6. LIMPIAR localStorage VIEJO (más de 30 días)
+    // 6. LIMPIAR localStorage VIEJO
     const timestamp = localStorage.getItem('hotmart_timestamp');
     if (timestamp && (Date.now() - timestamp > 30 * 24 * 60 * 60 * 1000)) {
         localStorage.removeItem('hotmart_afiliado');
@@ -719,7 +776,6 @@ window.onload = function () {
     
 })();
 </script>
-
 <!-- ============================================ -->
 <!-- SECCIÓN: CONTADOR DE VISITAS                -->
 <!-- ============================================ -->
