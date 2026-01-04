@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --card-bg: #FFFFFF;
     --card-border: rgba(0, 0, 0, 0.08);
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 8px 30px rgba(10, 36, 99, 0.15);
+    --shadow-hover: 0 12px 35px rgba(255, 107, 53, 0.3); /* MÁS NARANJA */
     --shadow-large: 0 15px 50px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     --border-radius: 16px;
@@ -200,16 +200,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    color: white; /* TEXTO EN BLANCO */
   }
 
   .header-description {
     font-size: 1.05rem;
     margin-top: 1.2rem;
-    opacity: 0.9;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.7;
+    color: white; /* TEXTO EN BLANCO */
+    opacity: 0.9;
   }
 
   section {
@@ -249,19 +251,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height: 1.7;
   }
 
-  /* ANIMACIONES */
+  /* ANIMACIONES - SE ACTIVAN CADA VEZ QUE SE VEN */
   .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  .animate-on-scroll.animated {
-    opacity: 1;
-    transform: translateY(0);
+  .animate-on-scroll-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  /* BENEFICIOS - SIEMPRE 3 EN FILA HORIZONTAL */
+  .animate-on-scroll-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate-on-scroll.animated,
+  .animate-on-scroll-left.animated,
+  .animate-on-scroll-right.animated {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  /* BENEFICIOS - SIEMPRE 3 EN FILA HORIZONTAL CON FONDO AZUL Y HOVER NARANJA */
   .benefits-row-3 {
     display: flex;
     flex-wrap: nowrap;
@@ -274,13 +290,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .benefits-row-3 .benefit {
     flex: 1;
     min-width: 0;
-    background: var(--card-bg);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
     padding: 2.2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     text-align: center;
     transition: var(--transition);
-    border: 1px solid var(--card-border);
+    border: 1px solid rgba(10, 36, 99, 0.15);
     position: relative;
     overflow: hidden;
   }
@@ -297,7 +313,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .benefits-row-3 .benefit:hover {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
+    box-shadow: var(--shadow-hover); /* SOMBRA NARANJA */
+    border-color: rgba(255, 107, 53, 0.2);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.15) 0%, rgba(26, 95, 127, 0.15) 100%);
   }
 
   .benefit-icon {
@@ -320,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 1rem;
   }
 
-  /* GRID 3x3 */
+  /* GRID 3x3 CON FONDO AZUL Y HOVER NARANJA */
   .benefits-grid-3x3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -329,13 +347,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   .benefits-grid-3x3 .benefit {
-    background: var(--card-bg);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
     padding: 1.8rem;
     border-radius: var(--border-radius-sm);
     box-shadow: var(--shadow);
     text-align: center;
     transition: var(--transition);
-    border: 1px solid var(--card-border);
+    border: 1px solid rgba(10, 36, 99, 0.15);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -357,7 +375,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .benefits-grid-3x3 .benefit:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
+    box-shadow: var(--shadow-hover); /* SOMBRA NARANJA */
+    border-color: rgba(255, 107, 53, 0.2);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.15) 0%, rgba(26, 95, 127, 0.15) 100%);
   }
 
   .benefits-grid-3x3 .benefit h4 {
@@ -368,22 +388,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 600;
   }
 
-  /* CALCULADORA MEJORADA - CON BARRA QUE SE PINTA */
+  /* CALCULADORA MEJORADA - CON BARRA QUE SE PINTA Y FONDO AZUL */
   .calc-container {
-    background: var(--card-bg);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
     padding: 2.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     margin-top: 2rem;
     transition: var(--transition);
-    border: 1px solid var(--card-border);
+    border: 1px solid rgba(10, 36, 99, 0.15);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .calc-container:hover {
-    box-shadow: var(--shadow-hover);
+    box-shadow: var(--shadow-hover); /* SOMBRA NARANJA */
+    border-color: rgba(255, 107, 53, 0.15);
   }
 
   .calc-container label {
@@ -475,9 +496,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: bold;
     text-align: center;
     padding: 1.8rem;
-    background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(26, 95, 127, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.15) 0%, rgba(26, 95, 127, 0.15) 100%);
     border-radius: var(--border-radius);
-    border: 2px solid rgba(10, 36, 99, 0.1);
+    border: 2px solid rgba(10, 36, 99, 0.2);
     color: var(--primary);
   }
 
@@ -491,7 +512,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     -webkit-text-fill-color: transparent;
   }
 
-  /* CARRUSEL DE TESTIMONIOS */
+  /* CARRUSEL DE TESTIMONIOS CON FONDO AZUL */
   .testimonials-container {
     position: relative;
     overflow: hidden;
@@ -507,17 +528,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .testimonial {
     flex: 0 0 calc(33.333% - 1.33rem);
-    background: var(--card-bg);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    border: 1px solid var(--card-border);
+    border: 1px solid rgba(10, 36, 99, 0.15);
     overflow: hidden;
     transition: var(--transition);
   }
 
   .testimonial:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
+    box-shadow: var(--shadow-hover); /* SOMBRA NARANJA */
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.15) 0%, rgba(26, 95, 127, 0.15) 100%);
   }
 
   .testimonial-name {
@@ -567,8 +589,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   .testimonial-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
+    border: 1px solid rgba(10, 36, 99, 0.15);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -583,9 +605,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   .testimonial-btn:hover {
-    background: var(--primary);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
     color: white;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-hover); /* SOMBRA NARANJA */
   }
 
   .testimonial-dots {
@@ -597,24 +620,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--gray-medium);
+    background: var(--gray);
     cursor: pointer;
     transition: var(--transition);
+    opacity: 0.3;
   }
 
   .testimonial-dot.active {
     background: var(--accent);
+    opacity: 1;
     transform: scale(1.2);
   }
 
-  /* SECCIÓN SUSCRIPCIÓN COMPACTA Y ELEGANTE */
+  /* SECCIÓN SUSCRIPCIÓN COMPACTA Y ELEGANTE CON FONDO AZUL */
   .subscription-section {
     padding: 2.5rem;
-    background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     margin: 3rem auto;
-    border: 1px solid rgba(10, 36, 99, 0.1);
+    border: 1px solid rgba(10, 36, 99, 0.15);
     max-width: 800px;
     position: relative;
     overflow: hidden;
@@ -628,6 +653,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width: 100%;
     height: 6px;
     background: linear-gradient(to right, var(--accent), var(--accent-gold));
+  }
+
+  .subscription-section:hover {
+    box-shadow: var(--shadow-hover); /* SOMBRA NARANJA */
   }
 
   .price-highlight {
@@ -713,7 +742,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.35);
+    box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4); /* SOMBRA NARANJA MÁS FUERTE */
   }
 
   .cta-button:hover::after {
@@ -730,7 +759,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background: var(--gray-light);
   }
 
-  /* BOTÓN FLOTANTE MEJORADO */
+  /* BOTÓN FLOTANTE MEJORADO CON SOMBRA NARANJA */
   .scroll-top-button {
     position: fixed;
     bottom: 25px;
@@ -743,7 +772,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     height: 55px;
     font-size: 22px;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3); /* SOMBRA NARANJA */
     z-index: 99;
     transition: var(--transition);
     display: flex;
@@ -762,10 +791,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .scroll-top-button:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4); /* SOMBRA NARANJA MÁS FUERTE */
   }
 
-  /* CTA FLOTANTE */
+  /* CTA FLOTANTE CON SOMBRA NARANJA */
   .floating-cta {
     position: fixed;
     right: -15px;
@@ -776,7 +805,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding: 1rem 1.8rem;
     border-radius: 50px 0 0 50px;
     font-weight: 700;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3); /* SOMBRA NARANJA */
     text-decoration: none;
     z-index: 999;
     animation: pulsate 3s infinite ease-in-out;
@@ -791,6 +820,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     right: 0;
     padding-right: 2.2rem;
     animation: none;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4); /* SOMBRA NARANJA MÁS FUERTE */
   }
 
   @keyframes pulsate {
@@ -1005,7 +1035,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- ============================================
-     PARTE 1: CABECERA Y PRESENTACIÓN
+     PARTE 1: CABECERA Y PRESENTACIÓN CON TEXTO BLANCO
 ============================================ -->
 <header role="banner" aria-label="Cabecera principal de OMPULSE">
   <div class="menu">
@@ -1098,7 +1128,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>¿Cómo funciona OMPULSE?</h2>
   <p>Con OMPULSE tendrás acceso a un sistema completo que combina educación en negocios digitales, network marketing y herramientas avanzadas como nuestro robot de trading para maximizar tus ingresos.</p>
   <div class="benefits-row-3">
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-left">
       <div class="benefit-icon"><i class="fas fa-brain"></i></div>
       <h3>Aprende</h3>
       <p>Aprende con contenido exclusivo y formación práctica en negocios digitales y network marketing.</p>
@@ -1108,7 +1138,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h3>Comparte</h3>
       <p>Comparte OMPULSE con otras personas y construye tu red profesional mientras ayudas a otros a crecer.</p>
     </div>
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-right">
       <div class="benefit-icon"><i class="fas fa-money-bill-wave"></i></div>
       <h3>Gana</h3>
       <p>Gana dinero desde el primer día con tu red y aumenta tus ingresos mes a mes.</p>
@@ -1122,7 +1152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section>
   <h2>¿Por qué OMPULSE?</h2>
   <div class="benefits-grid-3x3">
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-left">
       <div class="benefit-icon"><i class="fas fa-book"></i></div>
       <h4>Aprende sobre negocios digitales reales</h4>
     </div>
@@ -1130,12 +1160,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="benefit-icon"><i class="fas fa-coins"></i></div>
       <h4>Gana dinero desde el primer día</h4>
     </div>
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-right">
       <div class="benefit-icon"><i class="fas fa-cogs"></i></div>
       <h4>Sistema fácil y sin complicaciones</h4>
     </div>
     
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-left">
       <div class="benefit-icon"><i class="fas fa-globe-americas"></i></div>
       <h4>Comparte con personas desde cualquier lugar</h4>
     </div>
@@ -1143,12 +1173,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="benefit-icon"><i class="fas fa-user-tie"></i></div>
       <h4>Sin jefes ni horarios</h4>
     </div>
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-right">
       <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
       <h4>Escala tus ingresos mes a mes</h4>
     </div>
     
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-left">
       <div class="benefit-icon"><i class="fas fa-user-graduate"></i></div>
       <h4>Contenido creado por expertos</h4>
     </div>
@@ -1156,7 +1186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="benefit-icon"><i class="fas fa-trophy"></i></div>
       <h4>Sistema que recompensa tu esfuerzo y tu red</h4>
     </div>
-    <div class="benefit animate-on-scroll">
+    <div class="benefit animate-on-scroll-right">
       <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
       <h4>Si estás aquí, es porque quieres un cambio</h4>
     </div>
@@ -1225,23 +1255,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>Testimonios</h2>
   <div class="testimonials-container">
     <div class="testimonials-track" id="testimonialsTrack">
-      <div class="testimonial">
+      <div class="testimonial animate-on-scroll-left">
         <div class="testimonial-name"><i class="fas fa-user-circle"></i> Luis M. Avila</div>
         <div class="testimonial-text">El que no gana dinero es porque no quiere, desde mi sofá, hablando con los colegas, le dedico cada día unas 4h a moverlo entre contactos, amigos, conocidos, el del super, el peluquero y les dedico un rato a enseñarles como crecer, y que con solo 3 personas todo lo demas es beneficio. En 3 semanas somos más de 40 personas en mi red.</div>
       </div>
-      <div class="testimonial">
+      <div class="testimonial animate-on-scroll">
         <div class="testimonial-name"><i class="fas fa-user-circle"></i> Miguel Díaz</div>
         <div class="testimonial-text">Desconfiaba un poco al principio. Lo compartí con mi grupo de amigos y esto es potente, ya he ganado más de 1500€, además el contenido de la revista me está ayudando. Le doy un 10.</div>
       </div>
-      <div class="testimonial">
+      <div class="testimonial animate-on-scroll-right">
         <div class="testimonial-name"><i class="fas fa-user-circle"></i> Leonardo Acosta</div>
         <div class="testimonial-text">El contenido tiene muchísimo valor. No solo estoy ganando dinero, también estoy aprendiendo sobre automatización y marketing digital de verdad. ¡Vale cada euro!</div>
       </div>
-      <div class="testimonial">
+      <div class="testimonial animate-on-scroll-left">
         <div class="testimonial-name"><i class="fas fa-user-circle"></i> Nerea Ruiz</div>
         <div class="testimonial-text">Ya he generado mis primeros ingresos con solo 4 referidos, y lo mejor es que se nota que el contenido es profesional y útil. Lo recomiendo a quien quiera empezar algo serio sin complicarse.</div>
       </div>
-      <div class="testimonial">
+      <div class="testimonial animate-on-scroll">
         <div class="testimonial-name"><i class="fas fa-user-circle"></i> Carlos Martínez</div>
         <div class="testimonial-text">Llevaba años buscando una oportunidad real de negocio online. Con OMPULSE encontré no solo ingresos, sino también una comunidad de gente comprometida. ¡Recomendado 100%!</div>
       </div>
@@ -1270,7 +1300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <!-- ============================================
-     PARTE 10: ELEMENTOS FLOTANTES
+     PARTE 10: ELEMENTOS FLOTANTES CON SOMBRAS NARANJAS
 ============================================ -->
 <a href="https://go.hotmart.com/A103302883F" class="floating-cta" target="_blank"><i class="fas fa-fire"></i> Únete Ahora</a>
 <button class="scroll-top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Volver al inicio"><i class="fas fa-chevron-up"></i></button>
@@ -1286,7 +1316,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ============================================
-     PARTE 12: SCRIPT MEJORADO 1
+     PARTE 12: SCRIPT MEJORADO CON ANIMACIONES QUE SE ACTIVAN CADA VEZ
 ============================================ -->
 <script>
 // FUNCIÓN CALCULADORA MEJORADA CON BARRAS DE PROGRESO
@@ -1389,20 +1419,51 @@ function aceptarCookies() {
   }
 }
 
-// ANIMACIONES AL SCROLL
+// ANIMACIONES QUE SE ACTIVAN CADA VEZ QUE SE VEN
+const animatedElementsLeft = document.querySelectorAll('.animate-on-scroll-left');
+const animatedElementsRight = document.querySelectorAll('.animate-on-scroll-right');
 const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+// Configuración del observer con reset
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observerLeft = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animated');
+    } else {
+      entry.target.classList.remove('animated');
+    }
+  });
+}, observerOptions);
+
+const observerRight = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animated');
+    } else {
+      entry.target.classList.remove('animated');
+    }
+  });
+}, observerOptions);
 
 const observer = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('animated');
+    } else {
+      entry.target.classList.remove('animated');
     }
   });
-}, { threshold: 0.1 });
+}, observerOptions);
 
-animatedElements.forEach(element => {
-  observer.observe(element);
-});
+// Observar todos los elementos
+animatedElementsLeft.forEach(element => observerLeft.observe(element));
+animatedElementsRight.forEach(element => observerRight.observe(element));
+animatedElements.forEach(element => observer.observe(element));
 
 // BOTÓN DE SCROLL TO TOP
 const scrollButton = document.querySelector('.scroll-top-button');
@@ -1422,7 +1483,8 @@ window.onload = function () {
   }
   
   // Animar elementos inmediatamente visibles
-  animatedElements.forEach(element => {
+  const allAnimatedElements = document.querySelectorAll('.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right');
+  allAnimatedElements.forEach(element => {
     const rect = element.getBoundingClientRect();
     if (rect.top < window.innerHeight - 100) {
       element.classList.add('animated');
@@ -1430,7 +1492,7 @@ window.onload = function () {
   });
 };
 
-// SCRIPT SEGUIMIENTO HOTMART (mantenido igual)
+// SCRIPT SEGUIMIENTO HOTMART
 document.addEventListener('DOMContentLoaded', function() {
     
     function obtenerCodigoAfiliado() {
