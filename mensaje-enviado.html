@@ -1,53 +1,475 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mensaje Enviado - OMPULSE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      text-align: center;
-      padding: 2rem;
+<!-- ============================================
+     METADATOS SEO OPTIMIZADOS
+============================================ -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Mensaje enviado correctamente a OMPULSE. Confirmación de contacto y próximos pasos.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://www.ompulse.com/mensaje-enviado.html" />
+<title>✅ Mensaje Enviado - OMPULSE | Revista de Negocios Digitales</title>
+<link rel="icon" type="image/png" href="h%20copia.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- ============================================
+     ESTILOS CSS COHERENTES CON EL SITIO
+============================================ -->
+<style>
+  :root {
+    --primary: #0A2463;
+    --secondary: #1A5F7F;
+    --accent: #FF6B35;
+    --accent-gold: #FFD166;
+    --dark: #0D1B2A;
+    --light: #FFFFFF;
+    --gray-light: #F8F9FA;
+    --gray: #6C757D;
+    --success: #2ECC71;
+    --card-bg: #FFFFFF;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 12px 35px rgba(255, 107, 53, 0.3);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-radius: 16px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  /* FONDO SUTIL COHERENTE */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(10, 36, 99, 0.03) 0%, transparent 20%),
+      radial-gradient(circle at 85% 30%, rgba(255, 107, 53, 0.03) 0%, transparent 20%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* === CONTENEDOR PRINCIPAL === */
+  .confirmation-container {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 3.5rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(10, 36, 99, 0.1);
+    transition: var(--transition);
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .confirmation-container:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+  }
+
+  /* === ICONO DE CONFIRMACIÓN === */
+  .confirmation-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--success), #27AE60);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .confirmation-icon i {
+    color: white;
+    font-size: 3rem;
+  }
+
+  /* === TEXTO DE CONFIRMACIÓN === */
+  h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .gold-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-gold) 0%, #FFA500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 5px 15px rgba(255, 209, 102, 0.3);
+  }
+
+  .confirmation-message {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  /* === DETALLES DE SEGUIMIENTO === */
+  .followup-details {
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(26, 95, 127, 0.05) 100%);
+    padding: 1.8rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2.5rem;
+    border-left: 4px solid var(--accent);
+    text-align: left;
+  }
+
+  .followup-details h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .followup-details h3 i {
+    color: var(--accent);
+  }
+
+  .followup-details ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .followup-details li {
+    margin-bottom: 0.8rem;
+    color: #555;
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .followup-details li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+  }
+
+  /* === BOTONES DE ACCIÓN === */
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .home-button {
+    display: block;
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 8px 25px rgba(10, 36, 99, 0.25);
+    font-size: 1.1rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .home-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--secondary), var(--primary));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50px;
+  }
+
+  .home-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(10, 36, 99, 0.4);
+  }
+
+  .home-button:hover::after {
+    opacity: 1;
+  }
+
+  .home-button i {
+    margin-right: 0.8rem;
+  }
+
+  .contact-again-button {
+    display: block;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, rgba(10, 36, 99, 0.1) 0%, rgba(26, 95, 127, 0.1) 100%);
+    color: var(--primary);
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: var(--transition);
+    border: 1px solid rgba(10, 36, 99, 0.2);
+    text-align: center;
+  }
+
+  .contact-again-button:hover {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* === FOOTER COHERENTE === */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-top: 3rem;
+    max-width: 500px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.85rem;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  /* === ANIMACIONES === */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .confirmation-container {
+      padding: 2.5rem 1.8rem;
+      margin: 1rem;
+    }
+    
     h1 {
+      font-size: 1.8rem;
+    }
+    
+    .gold-text {
       font-size: 2rem;
-      background: linear-gradient(to right, #FFD700, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
     }
-    p {
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
+    
+    .confirmation-icon {
+      width: 80px;
+      height: 80px;
     }
-    .inicio-button {
-      background: #ff0000;
-      color: #fff;
-      font-weight: bold;
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      transition: background 0.3s ease;
+    
+    .confirmation-icon i {
+      font-size: 2.5rem;
     }
-    .inicio-button:hover {
-      background: #cc0000;
+    
+    .confirmation-message {
+      font-size: 1rem;
     }
-  </style>
+    
+    .followup-details {
+      padding: 1.5rem;
+    }
+    
+    .home-button,
+    .contact-again-button {
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 1rem;
+    }
+    
+    .confirmation-container {
+      padding: 2rem 1.5rem;
+    }
+    
+    h1 {
+      font-size: 1.6rem;
+    }
+    
+    .gold-text {
+      font-size: 1.8rem;
+    }
+    
+    .confirmation-icon {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .confirmation-icon i {
+      font-size: 2rem;
+    }
+    
+    .footer-links {
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>
 </head>
+
 <body>
-  <h1>Mensaje enviado con éxito</h1>
-  <p>Gracias por escribirnos. En breve nos pondremos en contacto contigo.</p>
-  <a class="inicio-button" href="index.html">← Volver al inicio</a>
+<!-- ============================================
+     CONTENIDO PRINCIPAL - CONFIRMACIÓN
+============================================ -->
+<div class="confirmation-container">
+  <div class="confirmation-icon">
+    <i class="fas fa-check-circle"></i>
+  </div>
+  
+  <h1>
+    <span class="gold-text">OMPULSE</span>
+    Mensaje Enviado con Éxito
+  </h1>
+  
+  <p class="confirmation-message">
+    ¡Gracias por contactar con nosotros! Tu mensaje ha sido enviado correctamente y 
+    será atendido por nuestro equipo lo antes posible.
+  </p>
+  
+  <div class="followup-details">
+    <h3><i class="fas fa-info-circle"></i> ¿Qué sucede ahora?</h3>
+    <ul>
+      <li>Recibirás una respuesta en tu email en menos de <strong>48 horas</strong></li>
+      <li>Revisa tu carpeta de spam si no ves nuestra respuesta</li>
+      <li>Mientras tanto, puedes explorar nuestra revista y recursos gratuitos</li>
+      <li>Si es urgente, vuelve a escribirnos mencionando tu caso anterior</li>
+    </ul>
+  </div>
+  
+  <div class="action-buttons">
+    <a href="index.html" class="home-button">
+      <i class="fas fa-home"></i> Volver al Inicio
+    </a>
+    
+    <a href="contacto.html" class="contact-again-button">
+      <i class="fas fa-envelope"></i> Enviar otro mensaje
+    </a>
+  </div>
+</div>
+
+<!-- ============================================
+     FOOTER
+============================================ -->
+<footer>
+  <div class="footer-links">
+    <a href="index.html" title="Volver al inicio">Inicio</a>
+    <a href="preguntas.html" title="Preguntas frecuentes">FAQ</a>
+    <a href="legal.html" title="Aviso legal">Legal</a>
+    <a href="contacto.html" title="Contacto">Contacto</a>
+  </div>
+  
+  <p>© 2025 <strong>OMPULSE</strong> - Revista Nº1 de Negocios Digitales</p>
+  <p><small>OMPULSE te ayuda a <strong>trabajar desde casa</strong> mediante <strong>network marketing</strong> profesional y nuestro exclusivo <strong>robot de trading</strong> automatizado.</small></p>
+</footer>
+
+<!-- ============================================
+     SCRIPT SIMPLE
+============================================ -->
+<script>
+// Pequeña animación adicional para el icono
+document.addEventListener('DOMContentLoaded', function() {
+  const icon = document.querySelector('.confirmation-icon');
+  
+  // Pequeño efecto de pulso después de 1 segundo
+  setTimeout(() => {
+    icon.style.transform = 'scale(1.05)';
+    icon.style.boxShadow = '0 15px 40px rgba(46, 204, 113, 0.4)';
+    
+    setTimeout(() => {
+      icon.style.transform = 'scale(1)';
+      icon.style.boxShadow = '0 10px 30px rgba(46, 204, 113, 0.3)';
+    }, 300);
+  }, 1000);
+  
+  // Redirección automática opcional después de 10 segundos
+  setTimeout(() => {
+    console.log('Podrías redirigir automáticamente a index.html después de 10 segundos');
+    // window.location.href = 'index.html'; // Descomenta si quieres redirección automática
+  }, 10000);
+});
+</script>
+
 </body>
 </html>
-
