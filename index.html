@@ -885,9 +885,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transform: scale(1.2);
   }
 
-  /* === NUEVO CARRUSEL ¿POR QUÉ OMPULSE? === */
+  /* === NUEVO CARRUSEL ¿POR QUÉ OMPULSE? - CENTRADO === */
   .why-ompulse-section {
     margin: 4rem 0;
+    text-align: center;
   }
 
   .why-carousel-container {
@@ -895,12 +896,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     overflow: hidden;
     margin: 3rem 0;
     padding: 1rem 0;
+    width: 100%;
   }
 
   .why-carousel-track {
     display: flex;
     transition: transform 0.6s ease;
     gap: 2rem;
+    width: max-content;
+    margin: 0 auto;
   }
 
   .why-card {
@@ -917,6 +921,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 350px;
   }
 
   .why-card:hover {
@@ -1098,6 +1103,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .why-card {
       flex: 0 0 calc(50% - 1rem);
     }
+    
+    .why-card {
+      width: 320px;
+    }
   }
 
   @media (max-width: 992px) {
@@ -1185,6 +1194,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .why-card {
       padding: 2rem;
       min-height: 280px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
     }
     
     .why-icon {
@@ -1469,7 +1481,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ============================================
-     NUEVA SECCIÓN: ¿POR QUÉ OMPULSE? (CARRUSEL)
+     NUEVA SECCIÓN: ¿POR QUÉ OMPULSE? (CARRUSEL CENTRADO)
 ============================================ -->
 <section class="why-ompulse-section">
   <h2>¿Por qué OMPULSE?</h2>
@@ -1787,23 +1799,37 @@ function initTestimonialCarousel() {
 }
 
 // ============================================
-// 4. NUEVO CARRUSEL ¿POR QUÉ OMPULSE?
+// 4. NUEVO CARRUSEL ¿POR QUÉ OMPULSE? (CENTRADO)
 // ============================================
 function initWhyCarousel() {
   const track = document.getElementById('whyCarouselTrack');
   const cards = document.querySelectorAll('.why-card');
-  const dots = document.querySelectorAll('.why-dot');
+  const dotsContainer = document.getElementById('whyDots');
   const prevBtn = document.getElementById('whyPrevBtn');
   const nextBtn = document.getElementById('whyNextBtn');
   
-  if (!track) return;
+  if (!track || cards.length === 0) return;
   
   let currentIndex = 0;
   const cardsPerView = window.innerWidth >= 1200 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
   
+  // Crear puntos dinámicamente
+  const totalGroups = Math.ceil(cards.length / cardsPerView);
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < totalGroups; i++) {
+    const dot = document.createElement('div');
+    dot.className = `why-dot ${i === 0 ? 'active' : ''}`;
+    dot.setAttribute('data-index', i);
+    dotsContainer.appendChild(dot);
+  }
+  
+  const dots = document.querySelectorAll('.why-dot');
+  
   function updateWhyCarousel() {
+    if (cards.length === 0) return;
+    
     const cardWidth = cards[0].offsetWidth + 32;
-    const translateX = -currentIndex * cardWidth;
+    const translateX = -currentIndex * cardWidth * cardsPerView;
     track.style.transform = `translateX(${translateX}px)`;
     
     dots.forEach((dot, index) => {
@@ -1812,13 +1838,13 @@ function initWhyCarousel() {
   }
   
   function nextWhySlide() {
-    const maxIndex = Math.max(0, cards.length - cardsPerView);
+    const maxIndex = Math.ceil(cards.length / cardsPerView) - 1;
     currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
     updateWhyCarousel();
   }
   
   function prevWhySlide() {
-    const maxIndex = Math.max(0, cards.length - cardsPerView);
+    const maxIndex = Math.ceil(cards.length / cardsPerView) - 1;
     currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
     updateWhyCarousel();
   }
@@ -1838,8 +1864,16 @@ function initWhyCarousel() {
   track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
   track.addEventListener('mouseleave', () => autoSlideInterval = setInterval(nextWhySlide, 4000));
   
+  // Actualizar en resize
+  window.addEventListener('resize', function() {
+    const newCardsPerView = window.innerWidth >= 1200 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+    if (cardsPerView !== newCardsPerView) {
+      currentIndex = 0;
+      updateWhyCarousel();
+    }
+  });
+  
   updateWhyCarousel();
-  window.addEventListener('resize', updateWhyCarousel);
 }
 
 // ============================================
